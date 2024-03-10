@@ -27,16 +27,19 @@ def page_results():
 
 def main():
     st.sidebar.title("Navigation")
-    pages = {
-        "Home": page_home,
-        "Survey": page_survey,
-        "Know your status": page_results,
-    }
 
-    selected_page = st.sidebar.radio("Go to", list(pages.keys()))
+    selected_page = st.sidebar.button("Home")
+    if selected_page:
+        page_home()
 
-    # Display the selected page
-    pages[selected_page]()
+    selected_page = st.sidebar.button("Survey")
+    if selected_page:
+        page_survey()
+
+    selected_page = st.sidebar.button("Know your status")
+    if selected_page:
+        page_results()
+    
 
 if __name__ == "__main__":
     main()
