@@ -29,9 +29,9 @@ def main():
     st.sidebar.title("Explore")
     # Create links for each page
     page_links = {
-        "Home": "[Home](#home)",
-        "Survey": "[Survey](#survey)",
-        "Know Your Status": "[Know Your Status](#results)"
+        "Home": "🏠 [Home](#home)",
+        "Survey": "📝 [Survey](#survey)",
+        "Know Your Status": "📊 [Know Your Status](#results)"
     }
 
     # Display the links in the sidebar
