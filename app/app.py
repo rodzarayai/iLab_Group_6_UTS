@@ -67,7 +67,7 @@ def main():
     button_survey = st.sidebar.button("📝 Survey")
     button_results = st.sidebar.button("📊 Know Your Status")
     button_recommendation = st.sidebar.button("⭐ Recommendation") 
-    button_explore = st.sidebar.button("🌐 Explore")
+    button_explore = st.sidebar.button("🌐 Explore obesity in the World")
     button_team = st.sidebar.button("👥 Team")
     button_resources = st.sidebar.button("📚 Resources")
 
@@ -89,8 +89,8 @@ def main():
     if button_recommendation:
         st.session_state.selected_page = 'Recommendation'
 
-    if button_exploration:
-        st.session_state.selected_page = 'Exploration'
+    if button_explore:
+        st.session_state.selected_page = 'Explore'
 
     if button_team:
         st.session_state.selected_page = 'Team'
@@ -107,7 +107,7 @@ def main():
         page_results()
     elif st.session_state.selected_page == 'Recommendation':
         page_recommendation()
-    elif st.session_state.selected_page == 'Exploration':
+    elif st.session_state.selected_page == 'Explore':
         page_exploration()
     elif st.session_state.selected_page == 'Team':
         page_team()
