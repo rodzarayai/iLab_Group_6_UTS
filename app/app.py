@@ -106,9 +106,9 @@ def main():
     elif st.session_state.selected_page == 'Know Your Status':
         page_results()
     elif st.session_state.selected_page == 'Recommendation':
-        page_recommendation()
+        page_recommendations()
     elif st.session_state.selected_page == 'Explore':
-        page_exploration()
+        page_explore()
     elif st.session_state.selected_page == 'Team':
         page_team()
     elif st.session_state.selected_page == 'Resources':
