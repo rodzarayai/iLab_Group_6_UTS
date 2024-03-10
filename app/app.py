@@ -44,12 +44,20 @@ def main():
 
     # Check which button is clicked and execute the corresponding function
     if button_home:
-        page_home()
+        st.session_state.selected_page = 'Home'
 
     if button_survey:
-        page_survey()
+        st.session_state.selected_page = 'Survey'
 
     if button_results:
+        st.session_state.selected_page = 'Know Your Status'
+
+    # Execute the corresponding function based on the selected page
+    if st.session_state.selected_page == 'Home':
+        page_home()
+    elif st.session_state.selected_page == 'Survey':
+        page_survey()
+    elif st.session_state.selected_page == 'Know Your Status':
         page_results()
 
 
