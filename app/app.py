@@ -28,23 +28,21 @@ def page_results():
 def main():
     st.sidebar.title("Explore")
     # Create links for each page
-    page_links = {
-        "Home": "🏠 [Home](#home)",
-        "Survey": "📝 [Survey](#survey)",
-        "Know Your Status": "📊 [Know Your Status](#results)"
-    }
+    # Create buttons with icons for each page
+    button_home = st.sidebar.button("🏠 Home")
+    button_survey = st.sidebar.button("📝 Survey")
+    button_results = st.sidebar.button("📊 Know Your Status")
 
-    # Display the links in the sidebar
-    selected_link = st.sidebar.markdown("\n".join(page_links.values()))
-    # Check the selected link and execute the corresponding function
-    if "Home" in selected_link._repr_markdown_():
+    # Check which button is clicked and execute the corresponding function
+    if button_home:
         page_home()
 
-    if "Survey" in selected_link._repr_markdown_():
+    if button_survey:
         page_survey()
 
-    if "Know Your Status" in selected_link._repr_markdown_():
+    if button_results:
         page_results()
+
 
 
 if __name__ == "__main__":
