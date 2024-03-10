@@ -32,11 +32,30 @@ def page_home():
 
 def page_survey():
     st.title("Tell us about your lifestyle/habits")
+    st.write('Quiz with the necessary information to fed the model. All the questions are related to lifestyle and habits')
 
 
 def page_results():
     st.title("Know your status")
+    st.write('Results based on ML models trained')
+    
+def page_recommendations():
+    st.title("Recommendations")
+    st.write('Find recommendations based on the results')
+    
 
+    
+def page_explore():
+    st.title("Explore Obesity in the World/Australia")
+    st.write('Explore data of obesity around the world and show how the person is in relation to the world/Australia')
+    
+def page_team():
+    st.title("Know the team")
+    st.write('Group 6 members')
+    
+def page_resources():
+    st.title("Resources")
+    st.write('Resources, papers, etc used. in the project')
 
 def main():
     st.sidebar.title("Explore")
@@ -47,6 +66,12 @@ def main():
     button_home = st.sidebar.button("🏠 Home")
     button_survey = st.sidebar.button("📝 Survey")
     button_results = st.sidebar.button("📊 Know Your Status")
+    button_recommendation = st.sidebar.button("⭐ Recommendation") 
+    button_explore = st.sidebar.button("🌐 Explore")
+    button_team = st.sidebar.button("👥 Team")
+    button_resources = st.sidebar.button("📚 Resources")
+
+
     
     # Initialize session state
     init_session_state()
@@ -61,6 +86,18 @@ def main():
     if button_results:
         st.session_state.selected_page = 'Know Your Status'
 
+    if button_recommendation:
+        st.session_state.selected_page = 'Recommendation'
+
+    if button_exploration:
+        st.session_state.selected_page = 'Exploration'
+
+    if button_team:
+        st.session_state.selected_page = 'Team'
+
+    if button_resources:
+        st.session_state.selected_page = 'Resources'
+
     # Execute the corresponding function based on the selected page
     if st.session_state.selected_page == 'Home':
         page_home()
@@ -68,8 +105,14 @@ def main():
         page_survey()
     elif st.session_state.selected_page == 'Know Your Status':
         page_results()
-
-
+    elif st.session_state.selected_page == 'Recommendation':
+        page_recommendation()
+    elif st.session_state.selected_page == 'Exploration':
+        page_exploration()
+    elif st.session_state.selected_page == 'Team':
+        page_team()
+    elif st.session_state.selected_page == 'Resources':
+        page_resources()
 
 if __name__ == "__main__":
     main()
