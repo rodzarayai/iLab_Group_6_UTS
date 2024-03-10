@@ -35,7 +35,7 @@ def main():
     }
 
     # Display the links in the sidebar
-    selected_page = st.sidebar.markdown("\n".join(page_links.values()))
+    selected_link = st.sidebar.markdown("\n".join(page_links.values()))
     # Check the selected link and execute the corresponding function
     if "Home" in selected_link._repr_markdown_():
         page_home()
