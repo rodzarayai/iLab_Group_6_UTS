@@ -13,7 +13,7 @@ st.set_page_config(page_title=apptitle, page_icon="⚕️")
          
           
 def page_home():
-    st.header('36105 iLab: Capstone Project - Autumn 2024 - UTS')
+    st.write('36105 iLab: Capstone Project - Autumn 2024 - UTS')
     # Title
     st.title('How lifestyle/habits can lead to obesity and diabetes type 2')
 
@@ -26,20 +26,26 @@ def page_results():
 
 
 def main():
-    st.sidebar.title("Navigation")
+    st.sidebar.title("Explore")
+    # Create links for each page
+    page_links = {
+        "Home": "[Home](#home)",
+        "Survey": "[Survey](#survey)",
+        "Know Your Status": "[Know Your Status](#results)"
+    }
 
-    selected_page = st.sidebar.button("Home")
-    if selected_page:
+    # Display the links in the sidebar
+    selected_page = st.sidebar.markdown("\n".join(page_links.values()))
+
+    # Check the selected link and execute the corresponding function
+    if "Home" in selected_page:
         page_home()
 
-    selected_page = st.sidebar.button("Survey")
-    if selected_page:
+    if "Survey" in selected_page:
         page_survey()
 
-    selected_page = st.sidebar.button("Know your status")
-    if selected_page:
+    if "Know Your Status" in selected_page:
         page_results()
-    
 
 if __name__ == "__main__":
     main()
