@@ -10,7 +10,11 @@ apptitle = 'DT2 & Obesity'
 
 st.set_page_config(page_title=apptitle, page_icon="⚕️")
 
-         
+
+# Function to initialize session state
+def init_session_state():
+    return st.session_state.setdefault('selected_page', 'Home')
+
           
 def page_home():
     st.write('36105 iLab: Capstone Project - Autumn 2024 - UTS')
@@ -28,34 +32,15 @@ def page_results():
 def main():
     st.sidebar.title("Explore")
  
-    # Create links for each page
-    page_links = {
-        "Home": "Home",
-        "Survey": "Survey",
-        "Know Your Status": "Know Your Status"
-    }
 
-    # Display the selectbox in the sidebar
-    selected_page = st.sidebar.selectbox("Go to", list(page_links.values()))
-
-    # Check the selected page and execute the corresponding function
-    if selected_page == "Home":
-        page_home()
-
-    elif selected_page == "Survey":
-        page_survey()
-
-    elif selected_page == "Know Your Status":
-        page_results()
-
-
-
-"""
     # Create links for each page
     # Create buttons with icons for each page
     button_home = st.sidebar.button("🏠 Home")
     button_survey = st.sidebar.button("📝 Survey")
     button_results = st.sidebar.button("📊 Know Your Status")
+    
+    # Initialize session state
+    init_session_state()
 
     # Check which button is clicked and execute the corresponding function
     if button_home:
@@ -67,7 +52,7 @@ def main():
     if button_results:
         page_results()
 
-"""
+
 
 if __name__ == "__main__":
     main()
