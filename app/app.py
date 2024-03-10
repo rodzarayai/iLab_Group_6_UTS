@@ -27,6 +27,30 @@ def page_results():
 
 def main():
     st.sidebar.title("Explore")
+ 
+    # Create links for each page
+    page_links = {
+        "Home": "Home",
+        "Survey": "Survey",
+        "Know Your Status": "Know Your Status"
+    }
+
+    # Display the selectbox in the sidebar
+    selected_page = st.sidebar.selectbox("Go to", list(page_links.values()))
+
+    # Check the selected page and execute the corresponding function
+    if selected_page == "Home":
+        page_home()
+
+    elif selected_page == "Survey":
+        page_survey()
+
+    elif selected_page == "Know Your Status":
+        page_results()
+
+
+
+"""
     # Create links for each page
     # Create buttons with icons for each page
     button_home = st.sidebar.button("🏠 Home")
@@ -43,7 +67,7 @@ def main():
     if button_results:
         page_results()
 
-
+"""
 
 if __name__ == "__main__":
     main()
