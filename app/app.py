@@ -20,6 +20,15 @@ def page_home():
     st.write('36105 iLab: Capstone Project - Autumn 2024 - UTS')
     # Title
     st.title('How lifestyle/habits can lead to obesity and diabetes type 2')
+    
+    st.header('Research Question')
+    st.markdown("""
+    How do lifestyle factors and habits lead to obesity and type 2 diabetes and which one is the strongest predictive values?
+    1. Examine the role of socio-economic status in lifestyle choices and its subsequent impact on health outcomes.
+    2. Investigate specific lifestyle factors (diet, physical activity, sleep patterns, etc.) and their correlation with obesity and diabetes incidence.
+    """)
+
+    
 
 def page_survey():
     st.title("Tell us about your lifestyle/habits")
