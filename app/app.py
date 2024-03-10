@@ -13,7 +13,7 @@ st.set_page_config(page_title=apptitle, page_icon="⚕️")
          
           
 def page_home():
-    st.header('36105 iLab: Capstone Project - Autumn 2024 - UTS)
+    st.header('36105 iLab: Capstone Project - Autumn 2024 - UTS')
     # Title
     st.title('How lifestyle/habits can lead to obesity and diabetes type 2')
 
