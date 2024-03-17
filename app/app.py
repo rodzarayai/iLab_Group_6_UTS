@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from joblib import load
+import altair as alt
 
 
 
@@ -33,6 +34,24 @@ def page_home():
 def page_survey():
     st.title("Tell us about your lifestyle/habits")
     st.write('Quiz with the necessary information to fed the model. All the questions are related to lifestyle and habits')
+    # Calculate BMI with user inputted height and weight (in metric)
+    height = st.number_input('Insert your height in cm', min_value = 0.0, max_value = 2.5)
+    weight = st.number_input('Insert your weight in kg', min_value = 0.0, max_value = 300.0)
+    
+    # Do no show conversion button until height and weight are selected
+    if height == None or weight == None:
+        st.write('Please input height and weight')
+    else:
+    # When reasonable input is provided, add a button to get and display the BMI
+        if st.button('Calculate BMI'):
+            bmi = round((weight / (height ** 2)), 1)
+            # df of WHO nutritional status by weight
+            bmi_categories = {"Underweight": [0.0, 18.49], "Normal weight": [18.5, 24.9], "Pre-obesity": [25.0, 29.9], 
+                              "Obesity class II":[35.0, 39.9], "Obesity class III": [40.0, 100]}
+            bmi_df = pd.DataFrame(bmi_categories, index = ['min weight', 'max weight'])
+            st.write("Your BMI is: ", bmi)
+            st.write(bmi_df)
+
 
 
 def page_results():
