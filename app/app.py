@@ -58,8 +58,8 @@ def page_survey():
             st.write("Your BMI is: ", bmi)
             st.write(bmi_df)
     
-    high_ bp = st.selectbox('Do you have high Blood Pressure?',['Yes','No'])
-    high_ col = st.selectbox('Have you check your cholesterol level in the last 5 years?',['Yes','No'])
+    high_bp = st.selectbox('Do you have high Blood Pressure?',['Yes','No'])
+    high_col = st.selectbox('Have you check your cholesterol level in the last 5 years?',['Yes','No'])
     smoke = st.selectbox('Have you smoked at least 100 cigarettes in your entire life?',['Yes','No'])
 
 
