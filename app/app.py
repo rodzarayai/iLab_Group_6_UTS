@@ -33,6 +33,50 @@ def page_home():
 def page_survey():
     st.title("Tell us about your lifestyle/habits")
     st.write('Quiz with the necessary information to fed the model. All the questions are related to lifestyle and habits')
+    
+    gender = st.selectbox('Gender',['Female','Male'])
+    age = height = st.number_input('Your age', min_value = 0.0, max_value = 90.0)
+
+    
+    # Calculate BMI with user inputted height and weight (in metric)
+    height = st.number_input('Insert your height in cm', min_value = 0.0, max_value = 2.5)
+    weight = st.number_input('Insert your weight in kg', min_value = 0.0, max_value = 300.0)
+    
+    
+
+    # Do no show conversion button until height and weight are selected
+    if height == None or weight == None:
+        st.write('Please input height and weight')
+    else:
+    # When reasonable input is provided, add a button to get and display the BMI
+        if st.button('Calculate BMI'):
+            bmi = round((weight / (height ** 2)), 1)
+            # df of WHO nutritional status by weight
+            bmi_categories = {"Underweight": [0.0, 18.49], "Normal weight": [18.5, 24.9], "Pre-obesity": [25.0, 29.9], 
+                              "Obesity class II":[35.0, 39.9], "Obesity class III": [40.0, 100]}
+            bmi_df = pd.DataFrame(bmi_categories, index = ['min weight', 'max weight'])
+            st.write("Your BMI is: ", bmi)
+            st.write(bmi_df)
+    
+    high_ bp = st.selectbox('Do you have high Blood Pressure?',['Yes','No'])
+    high_ col = st.selectbox('Have you check your cholesterol level in the last 5 years?',['Yes','No'])
+    smoke = st.selectbox('Have you smoked at least 100 cigarettes in your entire life?',['Yes','No'])
+
+
+    #[Note: 5 packs = 100 cigarettes] 
+    stroke = st.selectbox('(Ever told) you had a stroke.',['Yes','No'])
+    chdmi = st.selectbox('(Ever told)  you had coronary heart disease (CHD) or myocardial infarction (MI)',['Yes','No'])
+    phys_act = st.selectbox('Have you done any physical activity in past 30 days - not including job?',['Yes','No'])
+    fruits = st.selectbox('Do you consume one fruit or more times per day?',['Yes','No'])
+    veggies = st.selectbox('Do you consume one vegetables or more times per day?',['Yes','No'])
+    drinker = st.selectbox('Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) ',['Yes','No'])
+    health_cov = st.selectbox('Have any kind of health care coverage, including health insurance, prepaid plans such as HMO, etc. ?',['Yes','No'])
+    doct_vis = st.selectbox('Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?',['Yes','No'])
+    gen_health = st.selectbox('Would you say that in general your health is',['Excellent','Very good','Good', 'Fair', 'Poor'])
+    men_health = st.number_input('Now thinking about your mental health, which includes stress, depression, and problems with emotions, for how many days during the past 30 days was your mental health not good? ', min_value = 0.0, max_value = 30.0)
+    phys_health = st.number_input('Now thinking about your physical health, which includes physical illness and injury, for how many days during the past 30 days was your physical health not good? ', min_value = 0.0, max_value = 30.0)
+    walk = st.selectbox('Do you have serious difficulty walking or climbing stairs?',['Yes','No'])
+
 
 
 def page_results():
