@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from joblib import load
+import plotly.graph_objects as go
 
 
 
@@ -39,24 +40,8 @@ def page_survey():
 
     
     # Calculate BMI with user inputted height and weight (in metric)
-    height = st.number_input('Insert your height in cm', min_value = 0.0, max_value = 2.5)
+    height = st.number_input('Insert your height in m', min_value = 0.0, max_value = 2.5)
     weight = st.number_input('Insert your weight in kg', min_value = 0.0, max_value = 300.0)
-    
-    
-
-    # Do no show conversion button until height and weight are selected
-    if height == None or weight == None:
-        st.write('Please input height and weight')
-    else:
-    # When reasonable input is provided, add a button to get and display the BMI
-        if st.button('Calculate BMI'):
-            bmi = round((weight / (height ** 2)), 1)
-            # df of WHO nutritional status by weight
-            bmi_categories = {"Underweight": [0.0, 18.49], "Normal weight": [18.5, 24.9], "Pre-obesity": [25.0, 29.9], 
-                              "Obesity class II":[35.0, 39.9], "Obesity class III": [40.0, 100]}
-            bmi_df = pd.DataFrame(bmi_categories, index = ['min weight', 'max weight'])
-            st.write("Your BMI is: ", bmi)
-            st.write(bmi_df)
     
     high_bp = st.selectbox('Do you have high Blood Pressure?',['Yes','No'])
     high_col = st.selectbox('Have you check your cholesterol level in the last 5 years?',['Yes','No'])
@@ -77,6 +62,34 @@ def page_survey():
     phys_health = st.number_input('Now thinking about your physical health, which includes physical illness and injury, for how many days during the past 30 days was your physical health not good? ', min_value = 0.0, max_value = 30.0)
     walk = st.selectbox('Do you have serious difficulty walking or climbing stairs?',['Yes','No'])
 
+    # Do no show conversion button until height and weight are selected
+    if height == None or weight == None:
+        st.write('Please input height and weight')
+    else:
+    # When reasonable input is provided, add a button to get and display the BMI
+        if st.button('Calculate BMI'):
+            bmi = round((weight / (height ** 2)), 1)
+            # df of WHO nutritional status by weight
+            bmi_categories = {"Underweight": [0.0, 18.49], "Normal weight": [18.5, 24.9], "Pre-obesity": [25.0, 29.9], 
+                              "Obesity class II":[35.0, 39.9], "Obesity class III": [40.0, 100]}
+            bmi_df = pd.DataFrame(bmi_categories, index = ['min weight', 'max weight'])
+            st.write(f"Your BMI is: {bmi}")
+            
+
+            fig = go.Figure(go.Indicator(
+                domain = {'x': [0, 1], 'y': [0, 1]},
+                value = bmi,
+                mode = "gauge+number",
+                title = {'text': "BMI"},
+                gauge = {'axis': {'range': [None, 60]},
+                        'bar': {'color': "darkblue"},
+                        'steps' : [
+                            {'range': [0, 18.5], 'color': "royalblue"},
+                            {'range': [18.5, 25], 'color': "green"},
+                            {'range': [25, 30], 'color': "yellow"},
+                            {'range': [30, 40], 'color': "orange"},
+                            {'range': [40, 60], 'color': "red"}]}))
+            st.plotly_chart(fig, use_container_width=True)
 
 
 def page_results():
