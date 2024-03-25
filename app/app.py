@@ -131,7 +131,7 @@ def page_home():
                                         ,'Some college or technical school'
                                         ,'College graduate' ])
 
-    income = st.radio('Monthly Income (AUD)', ['[1 - 22,500]'
+    income = st.radio('Annual Income (AUD)', ['[1 - 22,500]'
                                                 ,'[22,501 - 33,750]'
                                                 ,'[33,751 - 45,000]'
                                                 ,'[45,001 - 52,500]'
@@ -233,9 +233,9 @@ def page_home():
     if st.button('Calculate Diabetes'):
         preds_val_xgb = xgb_model.predict(input_df_xgb)
         if int(preds_val_xgb) == 0:
-            result = "<span style='color:green;'>Your Health is Right! You do not have Diabetes 🥗</span>"
+            result = "<span style='color:green;'>Your Health looks great! You do not appear to be at risk for diabetes 🥗</span>"
         else:
-            result = "<span style='color:red;'>You must visit a doctor. You are at risk of having Diabetes ❗️</span>"
+            result = "<span style='color:red;'>You Health need attention. You are at risk of having Diabetes and you should visit a doctor ❗️</span>"
 
         st.subheader('Model Predictions')
         st.markdown(result, unsafe_allow_html=True)
