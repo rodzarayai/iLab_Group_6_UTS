@@ -33,7 +33,7 @@ def page_home():
     # Title
     # Centered title using markdown and HTML
     st.title("LiveWell 🌱")
-    st.title("Obesity Prevention & Diabetes Learning Platform 📚)
+    st.title("Obesity Prevention & Diabetes Learning Platform 📚")
     
     st.header('Obesity is a major risk factor for a range of diseases, including heart disease, stroke, diabetes, and various types of cancer.')
     st.header("""The diabetes epidemic is one of the largest and most complex health challenges Australia has faced. It touches millions of lives across the country and impacts every part of our health system.
