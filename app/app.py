@@ -225,7 +225,7 @@ And its impact is growing. In the past 20 years, the numbers have dramatically i
 
     if st.button('Calculate Diabetes'):
             preds_val_xgb = xgb_model.predict(input_df_xgb)
-            if preds_val_xgb = 0:
+            if preds_val_xgb == 0:
                 result = 'Your Health is Right! You do not have Diabetes'
             else:
                 result = 'You must visit a doctor. You are in risk of having Diabetes'
