@@ -228,16 +228,11 @@ def page_home():
                         {'range': [25, 30], 'color': "yellow"},
                         {'range': [30, 40], 'color': "orange"},
                         {'range': [40, 60], 'color': "red"}]}))
-            st.plotly_chart(fig, use_container_width=True)        
+        st.plotly_chart(fig, use_container_width=True)        
 
     
 
     
-
-
-
-
-
 
 def page_results():
     st.title("Know your status")
