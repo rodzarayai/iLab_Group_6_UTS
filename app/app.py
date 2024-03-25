@@ -59,18 +59,7 @@ def page_home():
     height = st.slider('Insert your height in cm', 0, 230, 170)
     weight = st.slider('Insert your weight in kg', 0, 300, 70)
     
-    height_m = height/100.0
-    
-   
-    # Do no show conversion button until height and weight are selected
-    if height == None or weight == None:
-        st.write('Please input height and weight')
-    else:
-    # When reasonable input is provided, add a button to get and display the BMI
-        if st.button('Calculate BMI'):
-            
-            
-           
+    height_m = height/100.0        
      
     
     bmi = round((weight / (height_m ** 2)), 1)
