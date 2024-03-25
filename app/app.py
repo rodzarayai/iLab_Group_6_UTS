@@ -35,17 +35,18 @@ def page_home():
     
     st.header('Research Question')
     st.markdown("""
-    How do lifestyle factors and habits lead to obesity and type 2 diabetes and which one is the strongest predictive values?
-    1. Examine the role of socio-economic status in lifestyle choices and its subsequent impact on health outcomes.
-    2. Investigate specific lifestyle factors (diet, physical activity, sleep patterns, etc.) and their correlation with obesity and diabetes incidence.
-    """)
-
-    st.title("Tell us about your lifestyle/habits")
-    st.write('Quiz with the necessary information to fed the model. All the questions are related to lifestyle and habits')
+    Obesity is a major risk factor for a range of diseases, including heart disease, stroke, diabetes, and various types of cancer.
     
-    gender = st.radio('Gender',['Female','Male', 'I prefer not to answer'])
-    age = height = st.slider('Your age', 18, 90, 18)
+    The diabetes epidemic is one of the largest and most complex health challenges Australia has faced. It touches millions of lives across the country and impacts every part of our health system.
 
+And its impact is growing. In the past 20 years, the numbers have dramatically increased by around 220%. If the growth rates continue, there will be more than 3.1 million Australians living with diabetes by 2050 and the annual cost is forecast to grow to about $45 billion per annum in this time.
+    """)
+    
+    st.title("Do you want to know your status?")
+    st.header('Tell us about your self')
+    
+    age = height = st.slider('Your age', 18, 90, 18)
+    gender = st.radio('Your Gender',['Female','Male', 'I prefer not to answer'])
     
     # Calculate BMI with user inputted height and weight (in metric)
     height = st.slider('Insert your height in cm', 0, 230, 170)
@@ -88,8 +89,7 @@ def page_home():
     
     bmi = round((weight / (height_m ** 2)), 1)
     
-    high_bp = st.radio('Do you have high Blood Pressure?',['Yes','No'])
-    high_col = st.radio('Have you check your cholesterol level in the last 5 years?',['Yes','No'])
+
     #smoke = st.selectbox('Have you smoked at least 100 cigarettes in your entire life?',['Yes','No'])
 
 
@@ -102,11 +102,21 @@ def page_home():
     #drinker = st.selectbox('Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) ',['Yes','No'])
     #health_cov = st.selectbox('Have any kind of health care coverage, including health insurance, prepaid plans such as HMO, etc. ?',['Yes','No'])
     #doct_vis = st.selectbox('Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?',['Yes','No'])
+    
+    
+    
+    st.header('Tell us about your Health')
+    high_bp = st.radio('Do you have high Blood Pressure?',['Yes','No'])
+    high_col = st.radio('Have you check your cholesterol level in the last 5 years?',['Yes','No'])
+    
     gen_health = st.selectbox('Would you say that in general your health is',['Excellent','Very good','Good', 'Fair', 'Poor'])
     men_health = st.slider('Now thinking about your mental health, which includes stress, depression, and problems with emotions, for how many days during the past 30 days was your mental health not good? ',  0, 30, 15)
     phys_health = st.slider('Now thinking about your physical health, which includes physical illness and injury, for how many days during the past 30 days was your physical health not good? ', 0, 30, 15)
     walk = st.radio('Do you have serious difficulty walking or climbing stairs?',['Yes','No'])
     
+    
+    
+    st.header('Tell us about your Education and Income')
     edu = st.radio('Education level', ['Never attended school or only kindergarten'
                                         ,'Elementary'
                                         ,'Some high school'
@@ -120,6 +130,7 @@ def page_home():
                                                 ,'[45,001 - 52,500]'
                                                 ,'[52,501 - 67,500]'
                                                 ,'[67,501 - 75,000]'])
+
 
     
     ##===========================================================Variables conversion
@@ -214,8 +225,14 @@ def page_home():
 
     if st.button('Calculate Diabetes'):
             preds_val_xgb = xgb_model.predict(input_df_xgb)
+            if preds_val_xgb = 0:
+                result = 'Your Health is Right! You do not have Diabetes'
+            else:
+                result = 'You must visit a doctor. You are in risk of having Diabetes'
+            
             st.subheader('Model Predictions')
             st.write(preds_val_xgb)
+            st.write('*The results of the model do not replace a Medical appointment. If you have any doubts you should visit your doctor.')
 
     
 
@@ -236,9 +253,9 @@ def page_recommendations():
     
 
     
-def page_explore():
-    st.title("Explore Obesity in the World/Australia")
-    st.write('Explore data of obesity around the world and show how the person is in relation to the world/Australia')
+#def page_explore():
+#    st.title("Explore Obesity in the World/Australia")
+#    st.write('Explore data of obesity around the world and show how the person is in relation to the world/Australia')
     
 def page_team():
     st.title("Know the team")
@@ -258,7 +275,7 @@ def main():
     #button_survey = st.sidebar.button("📝 Survey")
     button_results = st.sidebar.button("📊 Know Your Status")
     button_recommendation = st.sidebar.button("⭐ Recommendation") 
-    button_explore = st.sidebar.button("🌐 Explore obesity in the World")
+    #button_explore = st.sidebar.button("🌐 Explore obesity in the World")
     button_team = st.sidebar.button("👥 Team")
     button_resources = st.sidebar.button("📚 Resources")
 
@@ -280,8 +297,8 @@ def main():
     if button_recommendation:
         st.session_state.selected_page = 'Recommendation'
 
-    if button_explore:
-        st.session_state.selected_page = 'Explore'
+    #if button_explore:
+    #    st.session_state.selected_page = 'Explore'
 
     if button_team:
         st.session_state.selected_page = 'Team'
@@ -298,8 +315,8 @@ def main():
         page_results()
     elif st.session_state.selected_page == 'Recommendation':
         page_recommendations()
-    elif st.session_state.selected_page == 'Explore':
-        page_explore()
+    #elif st.session_state.selected_page == 'Explore':
+     #   page_explore()
     elif st.session_state.selected_page == 'Team':
         page_team()
     elif st.session_state.selected_page == 'Resources':
