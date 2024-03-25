@@ -4,6 +4,7 @@ from joblib import load
 import datetime
 import os
 import xgboost as xgb
+import plotly.graph_objects as go
 
 
 
@@ -39,9 +40,6 @@ def page_home():
     2. Investigate specific lifestyle factors (diet, physical activity, sleep patterns, etc.) and their correlation with obesity and diabetes incidence.
     """)
 
-    
-
-def page_survey():
     st.title("Tell us about your lifestyle/habits")
     st.write('Quiz with the necessary information to fed the model. All the questions are related to lifestyle and habits')
     
@@ -55,7 +53,7 @@ def page_survey():
     
     height_m = height/100.0
     
-    
+   
     # Do no show conversion button until height and weight are selected
     if height == None or weight == None:
         st.write('Please input height and weight')
@@ -67,8 +65,26 @@ def page_survey():
             bmi_categories = {"Underweight": [0.0, 18.49], "Normal weight": [18.5, 24.9], "Pre-obesity": [25.0, 29.9], 
                               "Obesity class II":[35.0, 39.9], "Obesity class III": [40.0, 100]}
             bmi_df = pd.DataFrame(bmi_categories, index = ['min weight', 'max weight'])
-            st.write("Your BMI is: ", bmi)
-            st.write(bmi_df)
+            st.write(f"Your BMI is: {bmi}")
+
+
+            fig = go.Figure(go.Indicator(
+                domain = {'x': [0, 1], 'y': [0, 1]},
+                value = bmi,
+                mode = "gauge+number",
+                title = {'text': "BMI"},
+                gauge = {'axis': {'range': [None, 60]},
+                        'bar': {'color': "darkblue"},
+                        'steps' : [
+                            {'range': [0, 18.5], 'color': "royalblue"},
+                            {'range': [18.5, 25], 'color': "green"},
+                            {'range': [25, 30], 'color': "yellow"},
+                            {'range': [30, 40], 'color': "orange"},
+                            {'range': [40, 60], 'color': "red"}]}))
+            st.plotly_chart(fig, use_container_width=True)        
+            
+           
+     
     
     bmi = round((weight / (height_m ** 2)), 1)
     
@@ -197,7 +213,7 @@ def page_survey():
     
 
     if st.button('Calculate Diabetes'):
-            preds_val_xgb = xgb_model.predict(input_mapping_xgb)
+            preds_val_xgb = xgb_model.predict(input_df_xgb)
             st.subheader('Model Predictions')
             st.write(preds_val_xgb)
 
@@ -239,7 +255,7 @@ def main():
     # Create links for each page
     # Create buttons with icons for each page
     button_home = st.sidebar.button("🏠 Home")
-    button_survey = st.sidebar.button("📝 Survey")
+    #button_survey = st.sidebar.button("📝 Survey")
     button_results = st.sidebar.button("📊 Know Your Status")
     button_recommendation = st.sidebar.button("⭐ Recommendation") 
     button_explore = st.sidebar.button("🌐 Explore obesity in the World")
@@ -255,8 +271,8 @@ def main():
     if button_home:
         st.session_state.selected_page = 'Home'
 
-    if button_survey:
-        st.session_state.selected_page = 'Survey'
+    #if button_survey:
+    #    st.session_state.selected_page = 'Survey'
 
     if button_results:
         st.session_state.selected_page = 'Know Your Status'
@@ -276,8 +292,8 @@ def main():
     # Execute the corresponding function based on the selected page
     if st.session_state.selected_page == 'Home':
         page_home()
-    elif st.session_state.selected_page == 'Survey':
-        page_survey()
+    #elif st.session_state.selected_page == 'Survey':
+    #    page_survey()
     elif st.session_state.selected_page == 'Know Your Status':
         page_results()
     elif st.session_state.selected_page == 'Recommendation':
