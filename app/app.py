@@ -146,7 +146,7 @@ def page_survey():
                'Age 40 to 44': 5, 'Age 45 to 49': 6, 'Age 50 to 54': 7, 'Age 55 to 59': 8,
                'Age 60 to 64': 9, 'Age 65 to 69': 10, 'Age 70 to 74': 11, 'Age 75 to 79': 12,
                'Age 80 or older': 13}
-    age_numeric = age_map[age]
+    age_numeric = age_map[age_category]
 
     # Calculate BMI (already numeric)
 
