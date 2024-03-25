@@ -231,15 +231,15 @@ def page_home():
     
 
     if st.button('Calculate Diabetes'):
-            preds_val_xgb = xgb_model.predict(input_df_xgb)
-            if int(preds_val_xgb) == 0:
-                result = 'Your Health is Right! You do not have Diabetes'
-            else:
-                result = 'You must visit a doctor. You are in risk of having Diabetes'
-            
-            st.subheader('Model Predictions')
-            st.write(result)
-            st.write('*The results of the model do not replace a Medical appointment. If you have any doubts you should visit your doctor.')
+        preds_val_xgb = xgb_model.predict(input_df_xgb)
+        if int(preds_val_xgb) == 0:
+            result = "<span style='color:green;'>Your Health is Right! You do not have Diabetes 🥗</span>"
+        else:
+            result = "<span style='color:red;'>You must visit a doctor. You are at risk of having Diabetes ❗️</span>"
+
+        st.subheader('Model Predictions')
+        st.markdown(result, unsafe_allow_html=True)
+        st.write("*The results of the model do not replace a Medical appointment. If you have any doubts you should visit your doctor.")
 
     
 
