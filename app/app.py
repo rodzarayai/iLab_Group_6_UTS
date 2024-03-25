@@ -197,7 +197,7 @@ def page_survey():
     
 
     if st.button('Calculate Diabetes'):
-            preds_val_xgb = xgb_model.predict(input_mapping_xgb)
+            preds_val_xgb = xgb_model.predict(input_df_xgb)
             st.subheader('Model Predictions')
             st.write(preds_val_xgb)
 
