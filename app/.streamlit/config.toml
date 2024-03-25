@@ -1,0 +1,6 @@
+[theme]
+primaryColor="#7792E3"  # Soft teal blue
+backgroundColor="#F7F7FF"  # Light gray
+secondaryBackgroundColor="#E5EBEB"  # Lighter gray
+textColor="#263238"  # Dark gray
+font="sans-serif"
