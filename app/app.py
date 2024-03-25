@@ -238,7 +238,7 @@ def page_home():
                 result = 'You must visit a doctor. You are in risk of having Diabetes'
             
             st.subheader('Model Predictions')
-            st.write(preds_val_xgb)
+            st.write(result)
             st.write('*The results of the model do not replace a Medical appointment. If you have any doubts you should visit your doctor.')
 
     
