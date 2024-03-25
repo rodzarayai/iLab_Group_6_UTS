@@ -68,28 +68,7 @@ def page_home():
     else:
     # When reasonable input is provided, add a button to get and display the BMI
         if st.button('Calculate BMI'):
-            bmi = round((weight / (height_m ** 2)), 1)
-            # df of WHO nutritional status by weight
-            bmi_categories = {"Underweight": [0.0, 18.49], "Normal weight": [18.5, 24.9], "Pre-obesity": [25.0, 29.9], 
-                              "Obesity class II":[35.0, 39.9], "Obesity class III": [40.0, 100]}
-            bmi_df = pd.DataFrame(bmi_categories, index = ['min weight', 'max weight'])
-            st.write(f"Your BMI is: {bmi}")
-
-
-            fig = go.Figure(go.Indicator(
-                domain = {'x': [0, 1], 'y': [0, 1]},
-                value = bmi,
-                mode = "gauge+number",
-                title = {'text': "BMI"},
-                gauge = {'axis': {'range': [None, 60]},
-                        'bar': {'color': "darkblue"},
-                        'steps' : [
-                            {'range': [0, 18.5], 'color': "royalblue"},
-                            {'range': [18.5, 25], 'color': "green"},
-                            {'range': [25, 30], 'color': "yellow"},
-                            {'range': [30, 40], 'color': "orange"},
-                            {'range': [40, 60], 'color': "red"}]}))
-            st.plotly_chart(fig, use_container_width=True)        
+            
             
            
      
@@ -240,6 +219,27 @@ def page_home():
         st.subheader('Model Predictions')
         st.markdown(result, unsafe_allow_html=True)
         st.write("*The results of the model do not replace a Medical appointment. If you have any doubts you should visit your doctor.")
+        
+        bmi_categories = {"Underweight": [0.0, 18.49], "Normal weight": [18.5, 24.9], "Pre-obesity": [25.0, 29.9], 
+                          "Obesity class II":[35.0, 39.9], "Obesity class III": [40.0, 100]}
+        bmi_df = pd.DataFrame(bmi_categories, index = ['min weight', 'max weight'])
+        st.write(f"Your BMI is: {bmi}")
+
+
+        fig = go.Figure(go.Indicator(
+            domain = {'x': [0, 1], 'y': [0, 1]},
+            value = bmi,
+            mode = "gauge+number",
+            title = {'text': "BMI"},
+            gauge = {'axis': {'range': [None, 60]},
+                    'bar': {'color': "darkblue"},
+                    'steps' : [
+                        {'range': [0, 18.5], 'color': "royalblue"},
+                        {'range': [18.5, 25], 'color': "green"},
+                        {'range': [25, 30], 'color': "yellow"},
+                        {'range': [30, 40], 'color': "orange"},
+                        {'range': [40, 60], 'color': "red"}]}))
+            st.plotly_chart(fig, use_container_width=True)        
 
     
 
