@@ -6,6 +6,8 @@ import os
 import xgboost as xgb
 import plotly.graph_objects as go
 
+from bmi_chart import make_bmi_chart
+
 
 
 
@@ -16,7 +18,8 @@ st.set_page_config(page_title=apptitle, page_icon="⚕️")
 
 
 #ML model
-xgb_8feat_path = '/mount/src/ilab_group_6_uts/models/xgb_8features.joblib'
+xgb_8feat_path = '/Users/lauramckeown/iLab_Group_6_UTS/models/xgb_8features.joblib' 
+#'/mount/src/ilab_group_6_uts/models/xgb_8features.joblib'
 xgb_model = load(xgb_8feat_path)
 
 
@@ -209,6 +212,7 @@ def page_home():
         st.markdown(result, unsafe_allow_html=True)
         st.write("*The results of the model do not replace a Medical appointment. If you have any doubts you should visit your doctor.")
         
+        '''
         bmi_categories = {"Underweight": [0.0, 18.49], "Normal weight": [18.5, 24.9], "Pre-obesity": [25.0, 29.9], 
                           "Obesity class II":[35.0, 39.9], "Obesity class III": [40.0, 100]}
         bmi_df = pd.DataFrame(bmi_categories, index = ['min weight', 'max weight'])
@@ -228,9 +232,11 @@ def page_home():
                         {'range': [25, 30], 'color': "yellow"},
                         {'range': [30, 40], 'color': "orange"},
                         {'range': [40, 60], 'color': "red"}]}))
-        st.plotly_chart(fig, use_container_width=True)        
+        st.plotly_chart(fig, use_container_width=True)'''
+               
 
-    
+        fig = make_bmi_chart(bmi)
+        st.write(fig)    
 
     
 
