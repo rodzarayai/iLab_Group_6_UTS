@@ -34,8 +34,6 @@ def init_session_state():
 
 #####============================================================GENERATE PLANS=================================================
 
-python
-Copy code
 def generate_plans(diabetes_condition, bmi, age_group, physical_health):
     # Convert diabetes condition code to string label
     if diabetes_condition == 0:
