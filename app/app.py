@@ -339,7 +339,8 @@ def page_home():
     if st.button('Diet Recommendations'):
         st.write(diet_plan)
 
-        
+    if st.button('Workout Recommendations'):
+        st.write(workout_plan)   
 
     
 
