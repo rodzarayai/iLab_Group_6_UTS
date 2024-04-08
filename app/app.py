@@ -16,7 +16,10 @@ st.set_page_config(page_title=apptitle, page_icon="⚕️")
 
 
 #ML model
-xgb_8feat_path = '/mount/src/ilab_group_6_uts/models/xgb_8features.joblib'
+xgb_8feat_path = '/mount/src/ilab_group_6_uts/models/xgb_M2.joblib'
+scaler_path = '/mount/src/ilab_group_6_uts/models/scaler_minmax.joblib'
+
+scaler_mm = load(scaler_path)
 xgb_model = load(xgb_8feat_path)
 
 
@@ -26,6 +29,127 @@ xgb_model = load(xgb_8feat_path)
 # Function to initialize session state
 def init_session_state():
     return st.session_state.setdefault('selected_page', 'Home')
+
+
+
+#####============================================================GENERATE PLANS=================================================
+
+python
+Copy code
+def generate_plans(diabetes_condition, bmi, age_group, physical_health):
+    # Convert diabetes condition code to string label
+    if diabetes_condition == 0:
+        condition = "Normal Person"
+    elif diabetes_condition == 1:
+        condition = "Prediabetes"
+    else:
+        condition = "Diabetes"
+    
+    # Initialize exercise and diet plans
+    exercise_plan = ""
+    diet_plan = ""
+    
+    # Determine exercise plan based on condition, age group, and physical health
+    if condition == "Diabetes":
+        if age_group in range(18, 25):
+            if physical_health <= 10:
+                exercise_plan = """
+                Exercise Plan:
+                - Establish a consistent exercise routine.
+                - Incorporate low-impact aerobic exercises like brisk walking or cycling for at least 30 minutes a day, 5 days a week."""
+            else:
+                exercise_plan = """
+                Exercise Plan:
+                - Focus on low-impact exercises such as swimming or stationary cycling to reduce strain on joints.
+                - Include strength training exercises targeting major muscle groups 2-3 days a week."""
+        elif age_group in range(25, 30):
+            if physical_health <= 15:
+                exercise_plan = """
+                Exercise Plan:
+                - Combine aerobic exercises with strength training to improve overall fitness.
+                - Include high-intensity interval training (HIIT) workouts for cardiovascular health."""
+            else:
+                exercise_plan = """
+                Exercise Plan:
+                - Incorporate activities like hiking or rowing for cardiovascular benefits.
+                - Include strength training exercises to maintain muscle mass."""
+        else:
+            if physical_health <= 20:
+                exercise_plan = """
+                Exercise Plan:
+                - Focus on a balanced exercise routine including aerobic exercises, strength training, and flexibility exercises."""
+            else:
+                exercise_plan = """
+                Exercise Plan:
+                - Consult with a fitness professional to design a personalized exercise program considering your health condition and physical limitations."""
+    elif condition == "Prediabetes":
+        if physical_health <= 10:
+            exercise_plan = """
+            Exercise Plan:
+            - Focus on regular aerobic exercises such as brisk walking or cycling to improve cardiovascular health."""
+        else:
+            exercise_plan = """
+            Exercise Plan:
+            - Incorporate activities like swimming or dancing to increase physical activity levels."""
+    else:
+        if physical_health <= 5:
+            exercise_plan = """
+            Exercise Plan:
+            - Emphasize regular physical activity such as walking or jogging to maintain overall health."""
+        else:
+            exercise_plan = """
+            Exercise Plan:
+            - Consider low-impact exercises like yoga or tai chi to improve flexibility and reduce stress."""
+    
+    # Determine diet plan based on condition and BMI
+    if condition == "Diabetes":
+        if bmi >= 25:
+            diet_plan = """
+            Diet Plan:
+            - Focus on portion control and healthy food choices to manage weight.
+            - Choose low-glycemic index foods and limit refined carbohydrates.
+            - Examples of foods: Quinoa, leafy greens, lean proteins like chicken or fish, nuts and seeds."""
+        else:
+            diet_plan = """
+            Diet Plan:
+            - Aim for a balanced diet with a variety of nutrient-rich foods.
+            - Monitor carbohydrate intake and choose complex carbohydrates.
+            - Examples of foods: Whole grains like brown rice or oats, fruits, vegetables, beans, and lentils."""
+    elif condition == "Prediabetes":
+        if bmi >= 25:
+            diet_plan = """
+            Diet Plan:
+            - Emphasize portion control and incorporate more fruits, vegetables, and whole grains.
+            - Examples of foods: Berries, sweet potatoes, whole grain bread, quinoa, lean proteins like turkey or tofu."""
+        else:
+            diet_plan = """
+            Diet Plan:
+            - Follow a balanced diet with emphasis on portion control and regular meal timings.
+            - Examples of foods: Lean proteins like chicken or fish, plenty of vegetables, whole grain pasta or bread."""
+    else:
+        if bmi >= 25:
+            diet_plan = """
+            Diet Plan:
+            - Focus on weight management through portion control and regular exercise.
+            - Limit intake of high-calorie and processed foods.
+            - Examples of foods: Lean proteins like grilled chicken or fish, plenty of vegetables, healthy fats like avocado or olive oil."""
+        else:
+            diet_plan = """
+            Diet Plan:
+            - Emphasize a balanced diet with plenty of fruits, vegetables, lean proteins, and healthy fats.
+            - Examples of foods: Leafy greens, colorful vegetables, beans and legumes, nuts and seeds, whole grains like quinoa or barley."""
+    
+    return exercise_plan, diet_plan
+
+
+
+
+
+###==============================================================END GENERATE PLANS============================================
+
+
+###=============================================================MAIN===============================================
+
 
           
 def page_home():
@@ -83,14 +207,16 @@ def page_home():
     st.header('Tell us about your Health')
     high_bp = st.radio('Do you have high Blood Pressure?',['Yes','No'])
     high_col = st.radio('Have you check your cholesterol level in the last 5 years?',['Yes','No'])
+    drinker = st.radio('Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) ',['Yes','No'])
     
+    phys_act = st.radio('Have you done any physical activity in past 30 days - not including job?',['Yes','No'])
     gen_health = st.selectbox('Would you say that in general your health is',['Excellent','Very good','Good', 'Fair', 'Poor'])
     men_health = st.slider('Now thinking about your mental health, which includes stress, depression, and problems with emotions, for how many days during the past 30 days was your mental health not good? ',  0, 30, 15)
     phys_health = st.slider('Now thinking about your physical health, which includes physical illness and injury, for how many days during the past 30 days was your physical health not good? ', 0, 30, 15)
     walk = st.radio('Do you have serious difficulty walking or climbing stairs?',['Yes','No'])
     
     
-    
+    """ 
     st.header('Tell us about your Education and Income')
     edu = st.radio('Education level', ['Never attended school or only kindergarten'
                                         ,'Elementary'
@@ -106,7 +232,7 @@ def page_home():
                                                 ,'[52,501 - 67,500]'
                                                 ,'[67,501 - 75,000]'])
 
-
+    """
     
     ##===========================================================Variables conversion
     
@@ -157,6 +283,10 @@ def page_home():
 
     # Convert high_col to numeric form
     high_col_numeric = 1 if high_col == 'Yes' else 0
+    # Convert phys_act to numeric form
+    phys_act_numeric = 1 if phys_act == 'Yes' else 0
+    # Convert high_col to numeric form
+    drinker_numeric = 1 if drinker == 'Yes' else 0
 
     # Convert gen_health to numeric form
     gen_health_map = {'Excellent': 1, 'Very good': 2, 'Good': 3, 'Fair': 4, 'Poor': 5}
@@ -167,6 +297,7 @@ def page_home():
     # Convert walk to numeric form
     walk_numeric = 1 if walk == 'Yes' else 0
 
+    """
     # Convert edu to numeric form
     edu_map = {'Never attended school or only kindergarten': 1, 'Elementary': 2,
                'Some high school': 3, 'High school graduate': 4, 
@@ -177,7 +308,7 @@ def page_home():
     income_map = {'[1 - 22,500]': 1, '[22,501 - 33,750]': 2, '[33,751 - 45,000]': 3,
                   '[45,001 - 52,500]': 4, '[52,501 - 67,500]': 5, '[67,501 - 75,000]': 6}
     income_numeric = income_map[income]
-
+    """
     
     
     input_mapping_xgb = {
@@ -186,20 +317,27 @@ def page_home():
                         'HighBP': int(high_bp_numeric),
                         'Age': int(age_numeric),
                         'PhysHlth': int(phys_health),
-                        'Income': int(income_numeric),
+                        #'Income': int(income_numeric),
                         'HighChol': int(high_col_numeric),
                         'MentHlth': int(men_health),
-                        'Education': int(edu_numeric),
-                        'DiffWalk': int(walk_numeric)
+                        #'Education': int(edu_numeric),
+                        'HvyAlcoholConsump': int(drinker_numeric),
+                        'DiffWalk': int(walk_numeric),
+                        'PhysActivity': int(phys_act_numeric)
             }
 
     input_df_xgb = pd.DataFrame([input_mapping_xgb])
+    input_scaled = scaler_mm.transform(input_df_xgb)
     
     
     
 
     if st.button('Calculate Diabetes'):
-        preds_val_xgb = xgb_model.predict(input_df_xgb)
+        preds_val_xgb = xgb_model.predict(input_scaled)
+        
+        ex_plan, diet_plan = generate_plans(preds_val_xgb, bmi, age, phys_health)
+        
+        
         if int(preds_val_xgb) == 0:
             result = "<span style='color:green;'>Your Health looks great! You do not appear to be at risk for diabetes 🥗</span>"
         else:
@@ -228,11 +366,19 @@ def page_home():
                         {'range': [25, 30], 'color': "yellow"},
                         {'range': [30, 40], 'color': "orange"},
                         {'range': [40, 60], 'color': "red"}]}))
-        st.plotly_chart(fig, use_container_width=True)        
+        st.plotly_chart(fig, use_container_width=True)  
+        
+    
+    
+    
+####===============================================================Recommendation button===============================
+    if st.button('Diet Recommendations'):
+        st.write(diet_plan)
+
+        
 
     
 
-    
 
 def page_results():
     st.title("Know your status")
