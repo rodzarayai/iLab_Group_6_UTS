@@ -214,24 +214,6 @@ def page_home():
     walk = st.radio('Do you have serious difficulty walking or climbing stairs?',['Yes','No'])
     
     
-    """ 
-    st.header('Tell us about your Education and Income')
-    edu = st.radio('Education level', ['Never attended school or only kindergarten'
-                                        ,'Elementary'
-                                        ,'Some high school'
-                                        ,'High school graduate'
-                                        ,'Some college or technical school'
-                                        ,'College graduate' ])
-
-    income = st.radio('Annual Income (AUD)', ['[1 - 22,500]'
-                                                ,'[22,501 - 33,750]'
-                                                ,'[33,751 - 45,000]'
-                                                ,'[45,001 - 52,500]'
-                                                ,'[52,501 - 67,500]'
-                                                ,'[67,501 - 75,000]'])
-
-    """
-    
     ##===========================================================Variables conversion
     
     
@@ -295,20 +277,7 @@ def page_home():
     # Convert walk to numeric form
     walk_numeric = 1 if walk == 'Yes' else 0
 
-    """
-    # Convert edu to numeric form
-    edu_map = {'Never attended school or only kindergarten': 1, 'Elementary': 2,
-               'Some high school': 3, 'High school graduate': 4, 
-               'Some college or technical school': 5, 'College graduate': 6}
-    edu_numeric = edu_map[edu]
 
-    # Convert income to numeric form
-    income_map = {'[1 - 22,500]': 1, '[22,501 - 33,750]': 2, '[33,751 - 45,000]': 3,
-                  '[45,001 - 52,500]': 4, '[52,501 - 67,500]': 5, '[67,501 - 75,000]': 6}
-    income_numeric = income_map[income]
-    """
-    
-    
     input_mapping_xgb = {
                         'BMI': bmi,
                         'GenHlth': int(gen_health_numeric),
@@ -327,14 +296,11 @@ def page_home():
     input_df_xgb = pd.DataFrame([input_mapping_xgb])
     input_scaled = scaler_mm.transform(input_df_xgb)
     
-    
-    
+    preds_val_xgb = xgb_model.predict(input_scaled)
+    workout_plan, diet_plan = generate_plans(preds_val_xgb, bmi, age, phys_health)
 
     if st.button('Calculate Diabetes'):
-        preds_val_xgb = xgb_model.predict(input_scaled)
-        
-        ex_plan, diet_plan = generate_plans(preds_val_xgb, bmi, age, phys_health)
-        
+     
         
         if int(preds_val_xgb) == 0:
             result = "<span style='color:green;'>Your Health looks great! You do not appear to be at risk for diabetes 🥗</span>"
