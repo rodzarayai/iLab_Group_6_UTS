@@ -164,7 +164,7 @@ def page_home():
     st.markdown("""
             The diabetes epidemic is one of the largest and most complex health challenges Australia has faced. 
             It touches millions of lives across the country and impacts every part of our health system.
-            <br><br>
+            
             And its impact is growing. In the past 20 years, the numbers have dramatically increased by around 220%. 
             If the growth rates continue, there will be more than 3.1 million Australians living with diabetes by 2050 
             and the annual cost is forecast to grow to about $45 billion per annum in this time.
