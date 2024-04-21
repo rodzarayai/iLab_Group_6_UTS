@@ -180,7 +180,7 @@ def page_home():
             #</h3>
              #""", unsafe_allow_html=True)
     
-    st.markdown("<h2 style='text-align: center; font-family: Segoe UI, sans-serif; font-size: 20px'>("Do you want to know your status?</h2>")
+    st.markdown("<h2 style='text-align: center; font-family: Segoe UI, sans-serif; font-size: 20px'>Do you want to know your status?</h2>")
     st.header('Tell us about yourself')
     
     age = height = st.slider('Your age', 18, 90, 18)
