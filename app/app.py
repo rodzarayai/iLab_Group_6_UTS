@@ -156,23 +156,23 @@ def page_home():
     # Centered title using markdown and HTML
     # Centered titles
     st.markdown("<h1 style='text-align: center;'>LiveWell 🌱</h1>", unsafe_allow_html=True)
-    st.markdown("<h1 style='text-align: center;'>Obesity Prevention & Diabetes Learning Platform 📚</h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center;'>Obesity Prevention & Diabetes Learning Platform 📚</h2>", unsafe_allow_html=True)
 
     # Aligned headers
-    st.markdown("<h2 style='text-align: justify;'>Obesity is a major risk factor for a range of diseases, including heart disease, stroke, diabetes, and various types of cancer.</h2>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: justify;'>Obesity is a major risk factor for a range of diseases, including heart disease, stroke, diabetes, and various types of cancer.</h3>", unsafe_allow_html=True)
     st.markdown("""
-            <h2 style='text-align: justify;'>
+            <h3 style='text-align: justify;'>
             The diabetes epidemic is one of the largest and most complex health challenges Australia has faced. 
             It touches millions of lives across the country and impacts every part of our health system.
             <br><br>
             And its impact is growing. In the past 20 years, the numbers have dramatically increased by around 220%. 
             If the growth rates continue, there will be more than 3.1 million Australians living with diabetes by 2050 
             and the annual cost is forecast to grow to about $45 billion per annum in this time.
-            </h2>
+            </h3>
             """, unsafe_allow_html=True)
     
     st.title("Do you want to know your status?")
-    st.header('Tell us about your self')
+    st.header('Tell us about yourself')
     
     age = height = st.slider('Your age', 18, 90, 18)
     gender = st.radio('Your Gender',['Female','Male', 'I prefer not to answer'])
