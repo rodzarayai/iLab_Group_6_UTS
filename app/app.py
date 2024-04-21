@@ -162,14 +162,14 @@ def page_home():
     st.markdown("Obesity is a major risk factor for a range of diseases, including heart disease, stroke, diabetes, and various types of cancer.")    
     #"<h3 style='text-align: justify; font-family: Segoe UI, sans-serif'>Obesity is a major risk factor for a range of diseases, including heart disease, stroke, diabetes, and various types of cancer.</h3>", unsafe_allow_html=True)
     st.markdown("""
-            <h3 style='text-align: justify; font-family: Segoe UI, sans-serif; font-size: 20px'>
+            #<h3 style='text-align: justify; font-family: Segoe UI, sans-serif; font-size: 20px'>
             The diabetes epidemic is one of the largest and most complex health challenges Australia has faced. 
             It touches millions of lives across the country and impacts every part of our health system.
             <br><br>
             And its impact is growing. In the past 20 years, the numbers have dramatically increased by around 220%. 
             If the growth rates continue, there will be more than 3.1 million Australians living with diabetes by 2050 
             and the annual cost is forecast to grow to about $45 billion per annum in this time.
-            </h3>
+            #</h3>
             """, unsafe_allow_html=True)
     
     st.title("Do you want to know your status?")
