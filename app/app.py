@@ -155,13 +155,13 @@ def page_home():
     # Title
     # Centered title using markdown and HTML
     # Centered titles
-    st.markdown("<h1 style='text-align: center;'>LiveWell 🌱</h1>", unsafe_allow_html=True)
-    st.markdown("<h2 style='text-align: center;'>Obesity Prevention & Diabetes Learning Platform 📚</h2>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; font-family: Segoe UI'>LiveWell 🌱</h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; font-family: Segoe UI'>Obesity Prevention & Diabetes Learning Platform 📚</h2>", unsafe_allow_html=True)
 
     # Aligned headers
-    st.markdown("<h3 style='text-align: justify;'>Obesity is a major risk factor for a range of diseases, including heart disease, stroke, diabetes, and various types of cancer.</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: justify; font-family: Segoe UI'>Obesity is a major risk factor for a range of diseases, including heart disease, stroke, diabetes, and various types of cancer.</h3>", unsafe_allow_html=True)
     st.markdown("""
-            <h3 style='text-align: justify;'>
+            <h3 style='text-align: justify; font-family: Segoe UI'>
             The diabetes epidemic is one of the largest and most complex health challenges Australia has faced. 
             It touches millions of lives across the country and impacts every part of our health system.
             <br><br>
@@ -192,7 +192,7 @@ def page_home():
 
     #[Note: 5 packs = 100 cigarettes] 
     #stroke = st.selectbox('(Ever told) you had a stroke.',['Yes','No'])
-    #chdmi = st.selectbox('(Ever told)  you had coronary heart disease (CHD) or myocardial infarction (MI)',['Yes','No'])
+    #chdmi = st.selectbox('(Ever told) you had coronary heart disease (CHD) or myocardial infarction (MI)',['Yes','No'])
     #phys_act = st.selectbox('Have you done any physical activity in past 30 days - not including job?',['Yes','No'])
     #fruits = st.selectbox('Do you consume one fruit or more times per day?',['Yes','No'])
     #veggies = st.selectbox('Do you consume one vegetables or more times per day?',['Yes','No'])
