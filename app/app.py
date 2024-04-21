@@ -159,9 +159,9 @@ def page_home():
     st.markdown("<h2 style='text-align: center; font-family: Segoe UI, sans-serif'>Obesity Prevention & Diabetes Learning Platform 📚</h2>", unsafe_allow_html=True)
 
     # Aligned headers
-    st.markdown("<text-align: justify; font-family: Segoe UI, sans-serif'>Obesity is a major risk factor for a range of diseases, including heart disease, stroke, diabetes, and various types of cancer.</h3>", unsafe_allow_html=True)
+    st.markdown("<style='text-align: justify; font-family: Segoe UI, sans-serif'>Obesity is a major risk factor for a range of diseases, including heart disease, stroke, diabetes, and various types of cancer.</h3>", unsafe_allow_html=True)
     st.markdown("""
-            <'text-align: justify; font-family: Segoe UI, sans-serif; font-size: 20px'>
+            <style='text-align: justify; font-family: Segoe UI, sans-serif; font-size: 20px'>
             The diabetes epidemic is one of the largest and most complex health challenges Australia has faced. 
             It touches millions of lives across the country and impacts every part of our health system.
             <br><br>
