@@ -159,7 +159,7 @@ def page_home():
     st.markdown("<h2 style='text-align: center; font-family: Segoe UI, sans-serif; font-size: 20px'>Obesity Prevention & Diabetes Learning Platform 📚</h2>", unsafe_allow_html=True)
 
     # Aligned headers
-    st.markdown(Obesity is a major risk factor for a range of diseases, including heart disease, stroke, diabetes, and various types of cancer.)    
+    st.markdown("Obesity is a major risk factor for a range of diseases, including heart disease, stroke, diabetes, and various types of cancer.")    
     #"<h3 style='text-align: justify; font-family: Segoe UI, sans-serif'>Obesity is a major risk factor for a range of diseases, including heart disease, stroke, diabetes, and various types of cancer.</h3>", unsafe_allow_html=True)
     st.markdown("""
             <h3 style='text-align: justify; font-family: Segoe UI, sans-serif; font-size: 20px'>
