@@ -161,7 +161,7 @@ def page_home():
     # Aligned headers
     st.markdown("<h3 style='text-align: justify; font-family: Segoe UI, sans-serif'>Obesity is a major risk factor for a range of diseases, including heart disease, stroke, diabetes, and various types of cancer.</h3>", unsafe_allow_html=True)
     st.markdown("""
-            <h3 style='text-align: justify; font-family: Segoe UI, sans-serif'>
+            <h3 style='text-align: justify; font-family: Segoe UI, sans-serif; font-size: 30px'>
             The diabetes epidemic is one of the largest and most complex health challenges Australia has faced. 
             It touches millions of lives across the country and impacts every part of our health system.
             <br><br>
