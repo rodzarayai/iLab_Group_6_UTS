@@ -155,8 +155,8 @@ def page_home():
     # Title
     # Centered title using markdown and HTML
     # Centered titles
-    st.markdown("<h1 style='text-align: center; font-family: Segoe UI, sans-serif'>LiveWell 🌱</h1>", unsafe_allow_html=True)
-    st.markdown("<h2 style='text-align: center; font-family: Segoe UI, sans-serif; font-size: 30px'>Obesity Prevention & Diabetes Learning Platform 📚</h2>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; font-family: Segoe UI, sans-serif; font-size: 32px'>LiveWell 🌱</h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; font-family: Segoe UI, sans-serif; font-size: 28px'>Obesity Prevention & Diabetes Learning Platform 📚</h2>", unsafe_allow_html=True)
 
     # Aligned headers
     st.markdown("<h3 style='text-align: justify; font-family: Segoe UI, sans-serif; font-size: 16px'>Obesity is a major risk factor for a range of diseases, including heart disease, stroke, diabetes, and various types of cancer.</h3>", unsafe_allow_html=True)
@@ -171,7 +171,7 @@ def page_home():
             </h3>
             """, unsafe_allow_html=True)
     
-    st.markdown("<h2 style='text-align: center; font-family: Segoe UI, sans-serif; font-size: 30px'>Do you want to know your status?</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; font-family: Segoe UI, sans-serif; font-size: 28px'>Do you want to know your status?</h2>", unsafe_allow_html=True)
     st.header('Tell us about yourself')
     
     age = height = st.slider('Your age', 18, 90, 18)
