@@ -13,20 +13,6 @@ st.set_page_config(page_title=apptitle,
                    initial_sidebar_state='collapsed')
 
 
-<<<<<<< Updated upstream
-=======
-#ML model
-xgb_8feat_path = '../models/xgb_m2.joblib'
-scaler_path = '../models/scaler_minmax.joblib'
-
-scaler_mm = load(scaler_path)
-xgb_model = load(xgb_8feat_path)
-
-
-
-
-
->>>>>>> Stashed changes
 # Function to initialize session state
 def init_session_state():
     return st.session_state.setdefault('selected_page', 'Home')
@@ -35,7 +21,6 @@ def init_session_state():
 def page_home():
     st.write('36105 iLab: Capstone Project - Autumn 2024 - UTS')
     # Title
-<<<<<<< Updated upstream
     st.title('How lifestyle/habits can lead to obesity and diabetes type 2')
     
     st.header('Research Question')
@@ -109,153 +94,6 @@ div[class*="NumberInput"] > label > div[data-testid="stMarkdownContainer"] > p {
     """, unsafe_allow_html=True)
     
     
-=======
-    # Centered title using markdown and HTML
-    # Centered titles
-    st.markdown("<h1 style='text-align: right; color: #379683; font-weight: bolder ; font-size: 30px ; font-family: impact'>LiveWell 🌱</h1>", unsafe_allow_html=True)
-    st.markdown("<h1 style='text-align: center; color: #2A4258; font-family: American Typewriter, serif; font-weight: bold; font-size: 40px'>OBESITY PREVENTION & DIABETES LEARNING PLATFORM 📚</h1>", unsafe_allow_html=True)
-
-    # Aligned headers
-    st.markdown("<h2 style='text-align: justify; font-size: 20px; font-family: Times New Roman'>Obesity is a major risk factor for a range of diseases, including heart disease, stroke, diabetes, and various types of cancer.</h2>", unsafe_allow_html=True)
-    st.markdown("""
-            <h2 style='text-align: justify; font-size: 20px; font-family: Times New Roman'>
-            The diabetes epidemic is one of the largest and most complex health challenges Australia has faced. 
-            It touches millions of lives across the country and impacts every part of our health system.
-            <br><br>
-            And its impact is growing. In the past 20 years, the numbers have dramatically increased by around 220%. 
-            If the growth rates continue, there will be more than 3.1 million Australians living with diabetes by 2050 
-            and the annual cost is forecast to grow to about $45 billion per annum in this time.
-            </h2>
-            """, unsafe_allow_html=True)
-    
-    st.markdown("""<h1 style='text-align: center; color: #2A4258; font-size: 23px; font-family: Georgia, serif; font-style: italic; font-weight: bold'>
-  Help us get a quick snapshot of your health and well-being by answering a few quick questions!
-</h1>""", unsafe_allow_html=True)
-    
-    st.divider()
-    # Adjusting sizes of radio box texts
-    st.markdown(
-    """<style>
-div[class*="stRadio"] > label > div[data-testid="stMarkdownContainer"] > p {
-    font-size: 20px;
-}
-    </style>
-    """, unsafe_allow_html=True)
-    # Adjusting sizes of number input texts
-    st.markdown(
-    """<style>
-div[class*="NumberInput"] > label > div[data-testid="stMarkdownContainer"] > p {
-    font-size: 20px;
-}
-    </style>
-    """, unsafe_allow_html=True)
-    # Adjusting sizes of slider texts
-    st.markdown(
-    """<style>
-div[class*="Slider"] > label > div[data-testid="stMarkdownContainer"] > p {
-    font-size: 20px;
-}
-    </style>
-    """, unsafe_allow_html=True)
-    st.header('Tell us about yourself')
-
-    age = st.slider('Enter your age', 18, 90, 18)
-    gender = st.radio('Select your gender',['Female','Male', 'I prefer not to answer'])
-    
-    
-    # Calculate BMI with user inputted height and weight (in metric)
-    height = st.slider('Enter your height in Centimetres:', 0, 230, 170)
-    weight = st.slider('Enter your weight in Kilograms:', 0, 300, 70)
-    
-    height_m = height/100.0  
-
-    bmi = round((weight / (height_m ** 2)), 1) if height_m != 0 else st.warning("Height cannot be zero. Please enter a valid height value.")
-
-    # Calculate BMI
-    if st.button('Calculate BMI') :
-        if height != 0:
-            bmi = round((weight / (height_m ** 2)), 1)
-            # df of WHO nutritional status by weight
-            bmi_categories = {"Underweight": [0.0, 18.49], "Normal weight": [18.5, 24.9], "Pre-obesity": [25.0, 29.9], 
-                                "Obesity class II":[35.0, 39.9], "Obesity class III": [40.0, 100]}
-            bmi_df = pd.DataFrame(bmi_categories, index = ['Minimum Weight', 'Maximum Weight'])
-            st.write("Your BMI is: ", bmi)
-            st.write(bmi_df)
-        elif height == None or weight == None:
-            st.write('Please input height and weight')
-        elif height == 0:
-            st.write('Entered height cannot be 0. Please enter again')
-    
-
-    #smoke = st.selectbox('Have you smoked at least 100 cigarettes in your entire life?',['Yes','No'])
-
-
-    #[Note: 5 packs = 100 cigarettes] 
-    #stroke = st.selectbox('(Ever told) you had a stroke.',['Yes','No'])
-    #chdmi = st.selectbox('(Ever told)  you had coronary heart disease (CHD) or myocardial infarction (MI)',['Yes','No'])
-    #phys_act = st.selectbox('Have you done any physical activity in past 30 days - not including job?',['Yes','No'])
-    #fruits = st.selectbox('Do you consume one fruit or more times per day?',['Yes','No'])
-    #veggies = st.selectbox('Do you consume one vegetables or more times per day?',['Yes','No'])
-    #drinker = st.selectbox('Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) ',['Yes','No'])
-    #health_cov = st.selectbox('Have any kind of health care coverage, including health insurance, prepaid plans such as HMO, etc. ?',['Yes','No'])
-    #doct_vis = st.selectbox('Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?',['Yes','No'])
-    
-    
-    st.divider()
-
-    st.header('Tell us about your health status')
-    high_bp = st.radio('Do you have high blood pressure?',['Yes','No'])
-    high_col = st.radio('Have you check your cholesterol level in the last 5 years?',['Yes','No'])
-    drinker = st.radio('Do you consider yourself a heavy drinker? ',['Yes','No'])
-    drinker_info = 'Definition for a heavy drinker is an adult man having more than 14 drinks per week and an adult woman having more than 7 drinks per week'
-    #HTML box ⓘ
-    st.markdown(f'<span title="{drinker_info}">ℹ️</span>', unsafe_allow_html=True)
-    
-    phys_act = st.radio('Have you done any physical activity in past 30 days - not including your job?',['Yes','No'])
-    gen_health = st.selectbox('What would you say your health status is in general?',['Excellent','Very good','Good', 'Fair', 'Poor'])
-    men_health = st.slider('How many days in the past 30 days did you feel metnally unwell?',  0, 30, 15)
-    men_health_info = "Mental health includes stress, depression, and all problems connected with emotions etc."
-    # HTML box
-    st.markdown(f'<span title="{men_health_info}"> ℹ️ </span>', unsafe_allow_html=True)
-
-    phys_health = st.slider('How many days in the past 30 days did you feel physically unwell?', 0, 30, 15)
-    phys_health_info = "Physical health includes all types of physical injuries and illnesses."
-    #HTML box
-    st.markdown(f'<span title="{phys_health_info}"> ℹ️ </span>', unsafe_allow_html=True)
-    walk = st.radio('Do you have serious difficulty walking or climbing stairs?',['Yes','No'])
-
-    st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
-     
-    st.markdown("""
-<nav class="navbar fixed-bottom navbar-expand-lg navbar-dark" style="background-color: #379683;">
-  <a class="navbar-brand" target="_blank">LiveWell</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="https://www.uts.edu.au/about/td-school" href="#">TD school <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://www.uts.edu.au/" target="_blank">UTS</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Master of Data Science and Innovation 2024</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-""", unsafe_allow_html=True)
-    
-    
-    ##===========================================================Variables conversion
-    
-    
-    # Convert gender to numeric form
-    gender_map = {'Female': 0, 'Male': 1, 'I prefer not to answer': 2}
-    gender_numeric = gender_map[gender]
->>>>>>> Stashed changes
 
     # Calculate BMI
     height_in_ms = height/100
@@ -277,102 +115,12 @@ div[class*="Slider"] > label > div[data-testid="stMarkdownContainer"] > p {
     
     st.divider()
 
-<<<<<<< Updated upstream
     st.header('Tell us about your health status')
-=======
-    # Calculate BMI (already numeric)
-
-    # Convert high_bp to numeric form
-    high_bp_numeric = 1 if high_bp == 'Yes' else 0
-
-    # Convert high_col to numeric form
-    high_col_numeric = 1 if high_col == 'Yes' else 0
-    # Convert phys_act to numeric form
-    phys_act_numeric = 1 if phys_act == 'Yes' else 0
-    # Convert high_col to numeric form
-    drinker_numeric = 1 if drinker == 'Yes' else 0
-
-    # Convert gen_health to numeric form
-    gen_health_map = {'Excellent': 1, 'Very good': 2, 'Good': 3, 'Fair': 4, 'Poor': 5}
-    gen_health_numeric = gen_health_map[gen_health]
-
-    # Phys_health (already numeric)
-
-    # Convert walk to numeric form
-    walk_numeric = 1 if walk == 'Yes' else 0
-
-
-    input_mapping_xgb = {
-                        'BMI': bmi,
-                        'GenHlth': int(gen_health_numeric),
-                        'HighBP': int(high_bp_numeric),
-                        'Age': int(age_numeric),
-                        'PhysHlth': int(phys_health),
-                        #'Income': int(income_numeric),
-                        'HighChol': int(high_col_numeric),
-                        'MentHlth': int(men_health),
-                        #'Education': int(edu_numeric),
-                        'HvyAlcoholConsump': int(drinker_numeric),
-                        'DiffWalk': int(walk_numeric),
-                        'PhysActivity': int(phys_act_numeric)
-            }
-
-    input_df_xgb = pd.DataFrame([input_mapping_xgb])
-    input_scaled = scaler_mm.transform(input_df_xgb)
-    
-    preds_val_xgb = xgb_model.predict(input_scaled)
-    workout_plan, diet_plan = generate_plans(preds_val_xgb, bmi, age, phys_health)
-
-    if 'diabetes' not in st.session_state:
-        st.session_state.diabetes = False
-
-    if st.button('Calculate Results') or st.session_state.diabetes:
-        st.session_state.diabetes = True
-        if int(preds_val_xgb) == 0:
-            result = "<span style='color:green; font-size: 40px; font-family: Impact'>YOU'RE DOING GREAT!</span>"
-            sub_text = "<h2 style='color: #2A4258; text-align: justify; font-size: 20px; font-family: Georgia, serif; font-style: italic'>You do not seem to have an obesity problem or to be at risk for diabetes 🥗.</h2>"
-        else:
-            result = "<span style='color:red; font-size: 40px; font-family: Impact'>YOUR HEALTH NEEDS ATTENTION!</span>"
-            sub_text = "<h2 style='color: #2A4258; text-align: justify; font-size: 20px; font-family: Georgia, serif; font-style: italic'>You may be at risk of obesity and diabetes. You should visit a doctor.❗️</h2>"
-
-
-        st.markdown("<span style='color: #2A4258; font-size: 20px; font-family: Times New Roman; font-weight: bold'> Your results from our model's predictions </span>", unsafe_allow_html=True)
-        st.markdown(result, unsafe_allow_html=True)
-        st.markdown(sub_text, unsafe_allow_html=True)
-        
-        st.write("*The results of the model do not replace a Medical appointment. If you have any doubts you should visit your doctor.")
-        
-        bmi_categories = {"Underweight": [0.0, 18.49], "Normal weight": [18.5, 24.9], "Pre-obesity": [25.0, 29.9], 
-                          "Obesity class II":[35.0, 39.9], "Obesity class III": [40.0, 100]}
-        bmi_df = pd.DataFrame(bmi_categories, index = ['min weight', 'max weight'])
-        st.write(f"Your BMI is: {bmi}")
-
-
-        fig = go.Figure(go.Indicator(
-            domain = {'x': [0.1, 0.9], 'y': [0.1, 0.9]},
-            value = bmi,
-            mode = "gauge+number",
-            title = {'text': "BMI"},
-            gauge = {'axis': {'range': [None, 60]},
-                    'bar': {'color': "darkblue"},
-                    'steps' : [
-                        {'range': [0, 18.5], 'color': "royalblue"},
-                        {'range': [18.5, 25], 'color': "green"},
-                        {'range': [25, 30], 'color': "yellow"},
-                        {'range': [30, 40], 'color': "orange"},
-                        {'range': [40, 60], 'color': "red"}]}))
-        st.plotly_chart(fig, use_container_width=True)
-        page_results(preds_val_xgb) 
-
-
-        
->>>>>>> Stashed changes
     
     
     high_bp = st.radio('Do you have high blood pressure?',['Yes','No'])
     high_col = st.radio('Have you checked your cholesterol level in the last 5 years?',['Yes','No'])
     
-<<<<<<< Updated upstream
 
     gen_health = st.radio('What would you say your health status is in general?',['Excellent','Very good','Good', 'Fair', 'Poor'])
 
@@ -380,27 +128,6 @@ div[class*="Slider"] > label > div[data-testid="stMarkdownContainer"] > p {
     men_health = st.slider("How many days in the past 30 days did you feel metnally unwell?", max_value=30)
     # HTML box
     st.markdown(f'<span title="{info3}"> ⓘ </span>', unsafe_allow_html=True)
-=======
-####===============================================================Recommendation button===============================
-    
-    #if 'diet' not in st.session_state:
-    #    st.session_state.diet = False
-    #if st.button('Diet Recommendations') or st.session_state.diet:
-    #    st.session_state.diet = True
-    #    st.write(diet_plan)
-
-    #if 'workout' not in st.session_state:
-    #    st.session_state.workout = False
-    #if st.button('Workout Recommendations') or st.session_state.workout:
-    #    st.session_state.workout = True
-    #    st.write(workout_plan) 
-
-    # Create a hyperlink to page_facts()
-    #if st.button('Go to facts'):
-    #    page_facts_obesity() 
-    
-    
->>>>>>> Stashed changes
 
     
     info4 = "Physical health includes all types of physical injuries and illnesses."
@@ -575,14 +302,8 @@ def main():
     # Create links for each page
     # Create buttons with icons for each page
     button_home = st.sidebar.button("🏠 Home")
-<<<<<<< Updated upstream
     button_survey = st.sidebar.button("📝 Survey")
     button_results = st.sidebar.button("📊 Know Your Status")
-=======
-    #button_survey = st.sidebar.button("📝 Survey")
-    button_results = st.sidebar.button("📊 Learn More about Obesity")
-    button_facts_diabetes = st.sidebar.button("📊 Learn More about Diabetes")
->>>>>>> Stashed changes
     button_recommendation = st.sidebar.button("⭐ Recommendation") 
     button_explore = st.sidebar.button("🌐 Explore obesity in the World")
     button_team = st.sidebar.button("👥 Team")
@@ -638,6 +359,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # Hehe
 
           
           
