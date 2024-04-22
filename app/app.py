@@ -1,106 +1,225 @@
 import streamlit as st
 import pandas as pd
 from joblib import load
+import datetime
+import os
+import xgboost as xgb
+import plotly.graph_objects as go
 
 
 
 
 # -- Set page config
-apptitle = 'DT2 & Obesity'
+apptitle = 'LiveWell'
 
 st.set_page_config(page_title=apptitle, 
                    page_icon="⚕️",
                    initial_sidebar_state='collapsed')
 
 
+#ML model
+xgb_8feat_path = '../models/xgb_m2.joblib'
+scaler_path = '../models/scaler_minmax.joblib'
+
+scaler_mm = load(scaler_path)
+xgb_model = load(xgb_8feat_path)
+
+
+
+
+
 # Function to initialize session state
 def init_session_state():
     return st.session_state.setdefault('selected_page', 'Home')
+
+
+
+#####============================================================GENERATE PLANS=================================================
+
+def generate_plans(diabetes_condition, bmi, age_group, physical_health):
+    # Convert diabetes condition code to string label
+    if diabetes_condition == 0:
+        condition = "Normal Person"
+    elif diabetes_condition == 1:
+        condition = "Prediabetes"
+    else:
+        condition = "Diabetes"
+    
+    # Initialize exercise and diet plans
+    exercise_plan = ""
+    diet_plan = ""
+    
+    # Determine exercise plan based on condition, age group, and physical health
+    if condition == "Diabetes":
+        if age_group in range(18, 25):
+            if physical_health <= 10:
+                exercise_plan = """
+                Exercise Plan:
+                - Establish a consistent exercise routine.
+                - Incorporate low-impact aerobic exercises like brisk walking or cycling for at least 30 minutes a day, 5 days a week."""
+            else:
+                exercise_plan = """
+                Exercise Plan:
+                - Focus on low-impact exercises such as swimming or stationary cycling to reduce strain on joints.
+                - Include strength training exercises targeting major muscle groups 2-3 days a week."""
+        elif age_group in range(25, 30):
+            if physical_health <= 15:
+                exercise_plan = """
+                Exercise Plan:
+                - Combine aerobic exercises with strength training to improve overall fitness.
+                - Include high-intensity interval training (HIIT) workouts for cardiovascular health."""
+            else:
+                exercise_plan = """
+                Exercise Plan:
+                - Incorporate activities like hiking or rowing for cardiovascular benefits.
+                - Include strength training exercises to maintain muscle mass."""
+        else:
+            if physical_health <= 20:
+                exercise_plan = """
+                Exercise Plan:
+                - Focus on a balanced exercise routine including aerobic exercises, strength training, and flexibility exercises."""
+            else:
+                exercise_plan = """
+                Exercise Plan:
+                - Consult with a fitness professional to design a personalized exercise program considering your health condition and physical limitations."""
+    elif condition == "Prediabetes":
+        if physical_health <= 10:
+            exercise_plan = """
+            Exercise Plan:
+            - Focus on regular aerobic exercises such as brisk walking or cycling to improve cardiovascular health."""
+        else:
+            exercise_plan = """
+            Exercise Plan:
+            - Incorporate activities like swimming or dancing to increase physical activity levels."""
+    else:
+        if physical_health <= 5:
+            exercise_plan = """
+            Exercise Plan:
+            - Emphasize regular physical activity such as walking or jogging to maintain overall health."""
+        else:
+            exercise_plan = """
+            Exercise Plan:
+            - Consider low-impact exercises like yoga or tai chi to improve flexibility and reduce stress."""
+    
+    # Determine diet plan based on condition and BMI
+    if condition == "Diabetes":
+        if bmi >= 25:
+            diet_plan = """
+            Diet Plan:
+            - Focus on portion control and healthy food choices to manage weight.
+            - Choose low-glycemic index foods and limit refined carbohydrates.
+            - Examples of foods: Quinoa, leafy greens, lean proteins like chicken or fish, nuts and seeds."""
+        else:
+            diet_plan = """
+            Diet Plan:
+            - Aim for a balanced diet with a variety of nutrient-rich foods.
+            - Monitor carbohydrate intake and choose complex carbohydrates.
+            - Examples of foods: Whole grains like brown rice or oats, fruits, vegetables, beans, and lentils."""
+    elif condition == "Prediabetes":
+        if bmi >= 25:
+            diet_plan = """
+            Diet Plan:
+            - Emphasize portion control and incorporate more fruits, vegetables, and whole grains.
+            - Examples of foods: Berries, sweet potatoes, whole grain bread, quinoa, lean proteins like turkey or tofu."""
+        else:
+            diet_plan = """
+            Diet Plan:
+            - Follow a balanced diet with emphasis on portion control and regular meal timings.
+            - Examples of foods: Lean proteins like chicken or fish, plenty of vegetables, whole grain pasta or bread."""
+    else:
+        if bmi >= 25:
+            diet_plan = """
+            Diet Plan:
+            - Focus on weight management through portion control and regular exercise.
+            - Limit intake of high-calorie and processed foods.
+            - Examples of foods: Lean proteins like grilled chicken or fish, plenty of vegetables, healthy fats like avocado or olive oil."""
+        else:
+            diet_plan = """
+            Diet Plan:
+            - Emphasize a balanced diet with plenty of fruits, vegetables, lean proteins, and healthy fats.
+            - Examples of foods: Leafy greens, colorful vegetables, beans and legumes, nuts and seeds, whole grains like quinoa or barley."""
+    
+    return exercise_plan, diet_plan
+
+
+
+
+
+###==============================================================END GENERATE PLANS============================================
+
+
+###=============================================================MAIN===============================================
+
 
           
 def page_home():
     st.write('36105 iLab: Capstone Project - Autumn 2024 - UTS')
     # Title
-    st.title('How lifestyle/habits can lead to obesity and diabetes type 2')
-    
-    st.header('Research Question')
+    # Centered title using markdown and HTML
+    # Centered titles
+    st.markdown("<h1 style='text-align: right; color: #379683; font-weight: bolder ; font-size: 30px ; font-family: impact'>LiveWell 🌱</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: #2A4258; font-family: American Typewriter, serif; font-weight: bold; font-size: 40px'>OBESITY PREVENTION & DIABETES LEARNING PLATFORM 📚</h1>", unsafe_allow_html=True)
+
+    # Aligned headers
+    st.markdown("<h2 style='text-align: justify; font-size: 20px; font-family: Times New Roman'>Obesity is a major risk factor for a range of diseases, including heart disease, stroke, diabetes, and various types of cancer.</h2>", unsafe_allow_html=True)
     st.markdown("""
-    How do lifestyle factors and habits lead to obesity and type 2 diabetes and which one is the strongest predictive values?
-    1. Examine the role of socio-economic status in lifestyle choices and its subsequent impact on health outcomes.
-    2. Investigate specific lifestyle factors (diet, physical activity, sleep patterns, etc.) and their correlation with obesity and diabetes incidence.
-    """)
-
+            <h2 style='text-align: justify; font-size: 20px; font-family: Times New Roman'>
+            The diabetes epidemic is one of the largest and most complex health challenges Australia has faced. 
+            It touches millions of lives across the country and impacts every part of our health system.
+            <br><br>
+            And its impact is growing. In the past 20 years, the numbers have dramatically increased by around 220%. 
+            If the growth rates continue, there will be more than 3.1 million Australians living with diabetes by 2050 
+            and the annual cost is forecast to grow to about $45 billion per annum in this time.
+            </h2>
+            """, unsafe_allow_html=True)
     
-
-def page_survey():
-    """Displays the survey page title and introductory text with flexbox and adjusted markdown."""
-
-    # Title
-    font_family = "Copperplate, Fantasy"  
-
-    text = f"""
-<h1 style='text-align: center; color: #008080; font-size: 63px; font-family: {font_family}; font-weight: bolder'>
-  Unlock Your Health Insights: Take Our Personalized Survey
-</h1>
-"""
-
-    st.markdown(text, unsafe_allow_html=True)
-    #st.markdown("<h1 style='text-align: center; color: #008080; font-size: 60px'; font-family: Papyrus, Fantasy'> Unlock Your Health Insights: Take Our Personalized Survey</h1>", unsafe_allow_html=True)
-
-
-    # Subheader
-    text2 = """
-<h1 style='text-align: center; color: #2F4F4F; font-style: italic; font-size: 25px; font-family: Times New Roman, sans-serif;'>
+    st.markdown("""<h1 style='text-align: center; color: #2A4258; font-size: 23px; font-family: Georgia, serif; font-style: italic; font-weight: bold'>
   Help us get a quick snapshot of your health and well-being by answering a few quick questions!
-</h1>
-"""
-    st.markdown(text2, unsafe_allow_html=True)
-    #st.markdown("<h1 style='text-align: center; color: black; font-style: italic; font-size: 20px'>Help us get a quick snapshot of your health and well-being by answering a few quick questions!</h1>", unsafe_allow_html=True)
-
-
+</h1>""", unsafe_allow_html=True)
+    
     st.divider()
-
-    st.header('Tell us about yourself')
-
-    gender = st.radio('Select your gender:',['Male','Female','I prefer not to say'])
+    # Adjusting sizes of radio box texts
     st.markdown(
     """<style>
 div[class*="stRadio"] > label > div[data-testid="stMarkdownContainer"] > p {
-    font-size: 18px;
+    font-size: 20px;
 }
     </style>
     """, unsafe_allow_html=True)
-
-
-    age = st.slider('Please select your age:', min_value=0, max_value=90, step=1)
-    st.markdown(
-    """<style>
-div[class*="Slider"] > label > div[data-testid="stMarkdownContainer"] > p {
-    font-size: 18px;
-}
-    </style>
-    """, unsafe_allow_html=True)
-    
-    
-    # Calculate BMI with user inputted height and weight (in metric)
-    height = st.number_input('Please enter your height in cm:', min_value = 0.0, max_value = 250.0)
-    weight = st.number_input('Please enter your weight in kg', min_value = 0.0, max_value = 300.0)
+    # Adjusting sizes of number input texts
     st.markdown(
     """<style>
 div[class*="NumberInput"] > label > div[data-testid="stMarkdownContainer"] > p {
-    font-size: 18px;
+    font-size: 20px;
 }
     </style>
     """, unsafe_allow_html=True)
+    # Adjusting sizes of slider texts
+    st.markdown(
+    """<style>
+div[class*="Slider"] > label > div[data-testid="stMarkdownContainer"] > p {
+    font-size: 20px;
+}
+    </style>
+    """, unsafe_allow_html=True)
+    st.header('Tell us about yourself')
+
+    age = st.slider('Enter your age', 18, 90, 18)
+    gender = st.radio('Select your gender',['Female','Male', 'I prefer not to answer'])
     
     
+    # Calculate BMI with user inputted height and weight (in metric)
+    height = st.slider('Enter your height in Centimetres:', 0, 230, 170)
+    weight = st.slider('Enter your weight in Kilograms:', 0, 300, 70)
+    
+    height_m = height/100.0  
+
+    bmi = round((weight / (height_m ** 2)), 1) if height_m != 0 else st.warning("Height cannot be zero. Please enter a valid height value.")
 
     # Calculate BMI
-    height_in_ms = height/100
-    
     if st.button('Calculate BMI') :
         if height != 0:
-            bmi = round((weight / (height_in_ms ** 2)), 1)
+            bmi = round((weight / (height_m ** 2)), 1)
             # df of WHO nutritional status by weight
             bmi_categories = {"Underweight": [0.0, 18.49], "Normal weight": [18.5, 24.9], "Pre-obesity": [25.0, 29.9], 
                                 "Obesity class II":[35.0, 39.9], "Obesity class III": [40.0, 100]}
@@ -111,51 +230,222 @@ div[class*="NumberInput"] > label > div[data-testid="stMarkdownContainer"] > p {
             st.write('Please input height and weight')
         elif height == 0:
             st.write('Entered height cannot be 0. Please enter again')
+    
 
+    #smoke = st.selectbox('Have you smoked at least 100 cigarettes in your entire life?',['Yes','No'])
+
+
+    #[Note: 5 packs = 100 cigarettes] 
+    #stroke = st.selectbox('(Ever told) you had a stroke.',['Yes','No'])
+    #chdmi = st.selectbox('(Ever told)  you had coronary heart disease (CHD) or myocardial infarction (MI)',['Yes','No'])
+    #phys_act = st.selectbox('Have you done any physical activity in past 30 days - not including job?',['Yes','No'])
+    #fruits = st.selectbox('Do you consume one fruit or more times per day?',['Yes','No'])
+    #veggies = st.selectbox('Do you consume one vegetables or more times per day?',['Yes','No'])
+    #drinker = st.selectbox('Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) ',['Yes','No'])
+    #health_cov = st.selectbox('Have any kind of health care coverage, including health insurance, prepaid plans such as HMO, etc. ?',['Yes','No'])
+    #doct_vis = st.selectbox('Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?',['Yes','No'])
+    
     
     st.divider()
 
     st.header('Tell us about your health status')
-    
-    
     high_bp = st.radio('Do you have high blood pressure?',['Yes','No'])
-    high_col = st.radio('Have you checked your cholesterol level in the last 5 years?',['Yes','No'])
+    high_col = st.radio('Have you check your cholesterol level in the last 5 years?',['Yes','No'])
+    drinker = st.radio('Do you consider yourself a heavy drinker? ',['Yes','No'])
+    drinker_info = 'Definition for a heavy drinker is an adult man having more than 14 drinks per week and an adult woman having more than 7 drinks per week'
+    #HTML box ⓘ
+    st.markdown(f'<span title="{drinker_info}">ℹ️</span>', unsafe_allow_html=True)
     
-
-    gen_health = st.radio('What would you say your health status is in general?',['Excellent','Very good','Good', 'Fair', 'Poor'])
-
-    info3 = "Mental health includes stress, depression, and all problems connected with emotions etc."  
-    men_health = st.slider("How many days in the past 30 days did you feel metnally unwell?", max_value=30)
+    phys_act = st.radio('Have you done any physical activity in past 30 days - not including your job?',['Yes','No'])
+    gen_health = st.selectbox('What would you say your health status is in general?',['Excellent','Very good','Good', 'Fair', 'Poor'])
+    men_health = st.slider('How many days in the past 30 days did you feel metnally unwell?',  0, 30, 15)
+    men_health_info = "Mental health includes stress, depression, and all problems connected with emotions etc."
     # HTML box
-    st.markdown(f'<span title="{info3}"> ⓘ </span>', unsafe_allow_html=True)
+    st.markdown(f'<span title="{men_health_info}"> ℹ️ </span>', unsafe_allow_html=True)
+
+    phys_health = st.slider('How many days in the past 30 days did you feel physically unwell?', 0, 30, 15)
+    phys_health_info = "Physical health includes all types of physical injuries and illnesses."
+    #HTML box
+    st.markdown(f'<span title="{phys_health_info}"> ℹ️ </span>', unsafe_allow_html=True)
+    walk = st.radio('Do you have serious difficulty walking or climbing stairs?',['Yes','No'])
+
+    st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
+     
+    st.markdown("""
+<nav class="navbar fixed-bottom navbar-expand-lg navbar-dark" style="background-color: #379683;">
+  <a class="navbar-brand" target="_blank">LiveWell</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="https://www.uts.edu.au/about/td-school" href="#">TD school <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.uts.edu.au/" target="_blank">UTS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Master of Data Science and Innovation 2024</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+""", unsafe_allow_html=True)
+    
+    
+    ##===========================================================Variables conversion
+    
+    
+    # Convert gender to numeric form
+    gender_map = {'Female': 0, 'Male': 1, 'I prefer not to answer': 2}
+    gender_numeric = gender_map[gender]
+
+    # Convert age to numeric form
+    
+    # Classify age into categories
+    if age >= 18 and age <= 24:
+        age_category = 'Age 18 - 24'
+    elif age >= 25 and age <= 29:
+        age_category = 'Age 25 to 29'
+    elif age >= 30 and age <= 34:
+        age_category = 'Age 30 to 34'
+    elif age >= 35 and age <= 39:
+        age_category = 'Age 35 to 39'
+    elif age >= 40 and age <= 44:
+        age_category = 'Age 40 to 44'
+    elif age >= 45 and age <= 49:
+        age_category = 'Age 45 to 49'
+    elif age >= 50 and age <= 54:
+        age_category = 'Age 50 to 54'
+    elif age >= 55 and age <= 59:
+        age_category = 'Age 55 to 59'
+    elif age >= 60 and age <= 64:
+        age_category = 'Age 60 to 64'
+    elif age >= 65 and age <= 69:
+        age_category = 'Age 65 to 69'
+    elif age >= 70 and age <= 74:
+        age_category = 'Age 70 to 74'
+    else:
+        age_category = 'Age 75 or older'
 
     
-    info4 = "Physical health includes all types of physical injuries and illnesses."
-    phys_health = st.slider("How many days in the past 30 days did you feel physically unwell?", max_value=30)
-    # HTML box
-    st.markdown(f'<span title="{info4}"> ⓘ </span>', unsafe_allow_html=True)
+    age_map = {'Age 18 - 24': 1, 'Age 25 to 29': 2, 'Age 30 to 34': 3, 'Age 35 to 39': 4, 
+               'Age 40 to 44': 5, 'Age 45 to 49': 6, 'Age 50 to 54': 7, 'Age 55 to 59': 8,
+               'Age 60 to 64': 9, 'Age 65 to 69': 10, 'Age 70 to 74': 11, 'Age 75 to 79': 12,
+               'Age 80 or older': 13}
+    age_numeric = age_map[age_category]
 
-    walk = st.radio('Do you have a serious difficulty walking or climbing stairs?',['Yes','No'])
+    # Calculate BMI (already numeric)
 
-    st.divider()
+    # Convert high_bp to numeric form
+    high_bp_numeric = 1 if high_bp == 'Yes' else 0
 
-    st.header('Tell us about your education and income')
+    # Convert high_col to numeric form
+    high_col_numeric = 1 if high_col == 'Yes' else 0
+    # Convert phys_act to numeric form
+    phys_act_numeric = 1 if phys_act == 'Yes' else 0
+    # Convert high_col to numeric form
+    drinker_numeric = 1 if drinker == 'Yes' else 0
 
-    st.radio('Your educational level:', ['Never attended school or only kindergarten',
-                                         'Elementary',
-                                         'High school dropout',
-                                         'High school graduate',
-                                         'Colleug or technical school dropout',
-                                         'College graduate or above'])
+    # Convert gen_health to numeric form
+    gen_health_map = {'Excellent': 1, 'Very good': 2, 'Good': 3, 'Fair': 4, 'Poor': 5}
+    gen_health_numeric = gen_health_map[gen_health]
+
+    # Phys_health (already numeric)
+
+    # Convert walk to numeric form
+    walk_numeric = 1 if walk == 'Yes' else 0
+
+
+    input_mapping_xgb = {
+                        'BMI': bmi,
+                        'GenHlth': int(gen_health_numeric),
+                        'HighBP': int(high_bp_numeric),
+                        'Age': int(age_numeric),
+                        'PhysHlth': int(phys_health),
+                        #'Income': int(income_numeric),
+                        'HighChol': int(high_col_numeric),
+                        'MentHlth': int(men_health),
+                        #'Education': int(edu_numeric),
+                        'HvyAlcoholConsump': int(drinker_numeric),
+                        'DiffWalk': int(walk_numeric),
+                        'PhysActivity': int(phys_act_numeric)
+            }
+
+    input_df_xgb = pd.DataFrame([input_mapping_xgb])
+    input_scaled = scaler_mm.transform(input_df_xgb)
     
-    st.radio('Your annual income range:', ['[1 - 22,500]',
-                                           '[22,501 - 33,750]',
-                                           '[33,751 - 45,000]',
-                                           '[45,001 - 52,500]',
-                                           '[52,501 - 67,500]',
-                                           '[67,501 - 75,000]'])
-    st.info('st.info test')
+    preds_val_xgb = xgb_model.predict(input_scaled)
+    workout_plan, diet_plan = generate_plans(preds_val_xgb, bmi, age, phys_health)
 
+    if 'diabetes' not in st.session_state:
+        st.session_state.diabetes = False
+
+    if st.button('Calculate Results') or st.session_state.diabetes:
+        st.session_state.diabetes = True
+        if int(preds_val_xgb) == 0:
+            result = "<span style='color:green; font-size: 40px; font-family: Impact'>YOU'RE DOING GREAT!</span>"
+            sub_text = "<h2 style='color: #2A4258; text-align: justify; font-size: 20px; font-family: Georgia, serif; font-style: italic'>You do not seem to have an obesity problem or to be at risk for diabetes 🥗.</h2>"
+        else:
+            result = "<span style='color:red; font-size: 40px; font-family: Impact'>YOUR HEALTH NEEDS ATTENTION!</span>"
+            sub_text = "<h2 style='color: #2A4258; text-align: justify; font-size: 20px; font-family: Georgia, serif; font-style: italic'>You may be at risk of obesity and diabetes. You should visit a doctor.❗️</h2>"
+
+
+        st.markdown("<span style='color: #2A4258; font-size: 20px; font-family: Times New Roman; font-weight: bold'> Your results from our model's predictions </span>", unsafe_allow_html=True)
+        st.markdown(result, unsafe_allow_html=True)
+        st.markdown(sub_text, unsafe_allow_html=True)
+        
+        st.write("*The results of the model do not replace a Medical appointment. If you have any doubts you should visit your doctor.")
+        
+        bmi_categories = {"Underweight": [0.0, 18.49], "Normal weight": [18.5, 24.9], "Pre-obesity": [25.0, 29.9], 
+                          "Obesity class II":[35.0, 39.9], "Obesity class III": [40.0, 100]}
+        bmi_df = pd.DataFrame(bmi_categories, index = ['min weight', 'max weight'])
+        st.write(f"Your BMI is: {bmi}")
+
+
+        fig = go.Figure(go.Indicator(
+            domain = {'x': [0.1, 0.9], 'y': [0.1, 0.9]},
+            value = bmi,
+            mode = "gauge+number",
+            title = {'text': "BMI"},
+            gauge = {'axis': {'range': [None, 60]},
+                    'bar': {'color': "darkblue"},
+                    'steps' : [
+                        {'range': [0, 18.5], 'color': "royalblue"},
+                        {'range': [18.5, 25], 'color': "green"},
+                        {'range': [25, 30], 'color': "yellow"},
+                        {'range': [30, 40], 'color': "orange"},
+                        {'range': [40, 60], 'color': "red"}]}))
+        st.plotly_chart(fig, use_container_width=True)
+        page_results(preds_val_xgb) 
+
+
+        
+    
+    
+    
+####===============================================================Recommendation button===============================
+    
+    #if 'diet' not in st.session_state:
+    #    st.session_state.diet = False
+    #if st.button('Diet Recommendations') or st.session_state.diet:
+    #    st.session_state.diet = True
+    #    st.write(diet_plan)
+
+    #if 'workout' not in st.session_state:
+    #    st.session_state.workout = False
+    #if st.button('Workout Recommendations') or st.session_state.workout:
+    #    st.session_state.workout = True
+    #    st.write(workout_plan) 
+
+    # Create a hyperlink to page_facts()
+    #if st.button('Go to facts'):
+    #    page_facts_obesity() 
+    
+    
+
+    
 
 def page_results(preds_val_xgb):
 
@@ -178,7 +468,7 @@ def page_results(preds_val_xgb):
                 st.title("heeh")
         with tab2:
             page_facts_diabetes()
-            if st.button("Support and Resources for Diabetes Type 2"):
+            if st.button("Support and Resources for Diabetes Types"):
                 st.title("heeh")
 
 
@@ -282,9 +572,9 @@ def page_recommendations():
     
 
     
-def page_explore():
-    st.title("Explore Obesity in the World/Australia")
-    st.write('Explore data of obesity around the world and show how the person is in relation to the world/Australia')
+#def page_explore():
+#    st.title("Explore Obesity in the World/Australia")
+#    st.write('Explore data of obesity around the world and show how the person is in relation to the world/Australia')
     
 def page_team():
     st.title("Know the team")
@@ -302,10 +592,11 @@ def main():
     # Create links for each page
     # Create buttons with icons for each page
     button_home = st.sidebar.button("🏠 Home")
-    button_survey = st.sidebar.button("📝 Survey")
-    button_results = st.sidebar.button("📊 Know Your Status")
+    #button_survey = st.sidebar.button("📝 Survey")
+    button_results = st.sidebar.button("📊 Learn More about Obesity")
+    button_facts_diabetes = st.sidebar.button("📊 Learn More about Diabetes")
     button_recommendation = st.sidebar.button("⭐ Recommendation") 
-    button_explore = st.sidebar.button("🌐 Explore obesity in the World")
+    #button_explore = st.sidebar.button("🌐 Explore obesity in the World")
     button_team = st.sidebar.button("👥 Team")
     button_resources = st.sidebar.button("📚 Resources")
 
@@ -318,8 +609,8 @@ def main():
     if button_home:
         st.session_state.selected_page = 'Home'
 
-    if button_survey:
-        st.session_state.selected_page = 'Survey'
+    #if button_survey:
+    #    st.session_state.selected_page = 'Survey'
 
     if button_results:
         st.session_state.selected_page = 'Know Your Status'
@@ -330,8 +621,8 @@ def main():
     if button_recommendation:
         st.session_state.selected_page = 'Recommendation'
 
-    if button_explore:
-        st.session_state.selected_page = 'Explore'
+    #if button_explore:
+    #    st.session_state.selected_page = 'Explore'
 
     if button_team:
         st.session_state.selected_page = 'Team'
@@ -342,16 +633,16 @@ def main():
     # Execute the corresponding function based on the selected page
     if st.session_state.selected_page == 'Home':
         page_home()
-    elif st.session_state.selected_page == 'Survey':
-        page_survey()
+    #elif st.session_state.selected_page == 'Survey':
+    #    page_survey()
     elif st.session_state.selected_page == 'Know Your Status':
         page_facts_obesity()
     elif st.session_state.selected_page == 'Facts about Diabetes':
         page_facts_diabetes()
     elif st.session_state.selected_page == 'Recommendation':
         page_recommendations()
-    elif st.session_state.selected_page == 'Explore':
-        page_explore()
+    #elif st.session_state.selected_page == 'Explore':
+     #   page_explore()
     elif st.session_state.selected_page == 'Team':
         page_team()
     elif st.session_state.selected_page == 'Resources':
@@ -359,7 +650,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-    # Hehe
 
           
           
