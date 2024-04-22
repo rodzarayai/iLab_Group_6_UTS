@@ -1,0 +1,5 @@
+[theme]
+primaryColor = '#46B26C'  # Green (strong and energetic)
+backgroundColor = '#EEF3F2'  # Light green (calm and refreshing)
+secondaryBackgroundColor = '#C7E8D8'  # Pale green (relaxing and inviting)
+textColor = '#333333'

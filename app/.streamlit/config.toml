@@ -1,6 +1,13 @@
 [theme]
+<<<<<<< Updated upstream
 primaryColor="#7792E3"  # Soft teal blue
 backgroundColor="#F7F7FF"  # Light gray
 secondaryBackgroundColor="#E5EBEB"  # Lighter gray
 textColor="#263238"  # Dark gray
 font="sans-serif"
+=======
+primaryColor = '#379683'  # Green (strong and energetic)
+backgroundColor = '#F4FFFA' # Light green (calm and refreshing)
+secondaryBackgroundColor = '#EEFAE9'  # Pale green (relaxing and inviting)
+textColor = '#1A3D1A'
+>>>>>>> Stashed changes
