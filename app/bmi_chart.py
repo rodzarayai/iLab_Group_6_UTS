@@ -1,49 +1,75 @@
-import matplotlib
-import matplotlib.pyplot as plt
-
+import plotly.graph_objects as go
+import numpy as np
 
 def make_bmi_chart(BMI):
+    # define colours
+    plot_bgcolor = "white"
+    quadrant_colors = [plot_bgcolor, "#f22626", "#f25926", "#f28c26", "#f2bf26", "#85e043", "#eff229"] 
     
-    # Set colours and values for each BMI class
-    colors = ['#B71C1C','#F44336','#FF9800', '#FFCA28', '#27ae60', '#FFEE58']
-    values = [60, 40, 35, 30, 25, 18.5, 0,]
-
-    # Set figure size
-    fig = plt.figure(figsize = (18,18))
-
-    # Make polar projection half circle plot
-    ax = fig.add_subplot(projection='polar');
-    ax.set_thetamin(0)
-    ax.set_thetamax(180)
-
-        # Add BMI class sections
-    ax.bar(x=[0, 0.97, 1.31, 1.57, 1.83, 2.09], width=1.05, height=0.5, bottom=2,
-        linewidth=3, edgecolor='white',
-        color=colors, align='edge');
+    # Text for each quadrent
+    quadrant_text = ["", "<b>Obesity Class III</b>", "<b>Obesity Class II</b>", "<b>Obesity Class I</b>", "<b>Overweight</b>", "<b>Healthy Weight</b>", "<b>Underweight</b>"]
     
-    # Add lables to BMI class sections
-    plt.annotate('Obesity Class III', xy=(0.4, 2.02), rotation=-65, color='white', fontweight='bold', fontsize=12);
-    plt.annotate('Obesity Class II', xy=(1.22, 2.05), rotation=-25, color='white', fontweight='bold', fontsize=12);
-    plt.annotate('Obesity Class I', xy=(1.55, 2.19), rotation=-7, color='white', fontweight='bold', fontsize=12);
-    plt.annotate('Overweight', xy=(1.79, 2.25), rotation=7, color='black', fontweight='bold', fontsize=12);
-    plt.annotate('Healthy Weight', xy=(2.08, 2.28), rotation=20, color='white', fontweight='bold', fontsize=12);
-    plt.annotate('Underweight', xy=(2.7, 2.25), rotation=60, color='black', fontweight='bold', fontsize=12);
+    # Number of quadrants 
+    n_quadrants = len(quadrant_colors) - 1
+    
+    # Weight category levels
+    weight_values = [60, 40, 35, 30, 25, 18.5, 0,]
 
-        # Add number lables
-    for loc, val in zip([0, 0.97, 1.31, 1.57, 1.83, 2.09, 3.14], values):
-        plt.annotate(val, xy=(loc, 2.5), fontsize=15, ha='right' if val<=25 else 'left')
-        
-    # Make pointer
-    plt.annotate(BMI, xytext=(0,0), xy=(3.14 - (BMI*(3.14/60)), 2.0), 
-                arrowprops=dict(arrowstyle='wedge, tail_width=0.4', color='black', shrinkA=0),
-                bbox=dict(boxstyle='circle', facecolor='black', linewidth=2.0),
-                fontsize=45, color='white', ha='center'
-                );
+    # Min and max BMI for chart
+    min_value = 0
+    max_value = 60
 
-    # Make chart title
-    plt.title('BMI Chart', loc='center', pad=20, fontsize=35, fontweight='bold');
+    # Configure pointer
+    hand_length = np.sqrt(2) / 4
+    hand_angle = np.pi * (1 - (max(min_value, min(max_value, BMI)) - min_value) / (max_value - min_value))
 
-    # Turn off axes
-    ax.set_axis_off();
+    # Make BMI figure
+    fig = go.Figure(
+        data=[
+            # Pie chart
+            go.Pie(
+                values = [0.5] + (np.array(weight_values) / 69 / n_quadrants).tolist(),
+                rotation=90,
+                hole=0.5,
+                marker_colors=quadrant_colors,
+                text=quadrant_text,
+                textinfo="text",
+                hoverinfo="skip"
+            ),
+        ],
+        # Plot layout
+        layout=go.Layout(
+            showlegend=False,
+            margin=dict(b=0,t=10,l=10,r=10),
+            width=650,
+            height=650,
+            paper_bgcolor=plot_bgcolor,
+            annotations=[
+                go.layout.Annotation(
+                    text=f"<b>BMI:</b><br>{BMI}",
+                    font_size=50,
+                    x=0.5, xanchor="center", xref="paper",
+                    y=0.15, yanchor="bottom", yref="paper",
+                    showarrow=False,
+                )
+            ],
+            # Make pointer
+            shapes=[
+                go.layout.Shape(
+                    type="circle",
+                    x0=0.48, x1=0.52,
+                    y0=0.48, y1=0.52,
+                    fillcolor="#333",
+                    line_color="#333",
+                ),
+                go.layout.Shape(
+                    type="line",
+                    x0=0.5, x1=0.5 + hand_length * np.cos(hand_angle),
+                    y0=0.5, y1=0.5 + hand_length * np.sin(hand_angle),
+                    line=dict(color="#333", width=4)
+                )
+            ]
+        )
+    )
 
     return fig

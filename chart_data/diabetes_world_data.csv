@@ -1,0 +1,225 @@
+,Region,Country,Diabetes Prevalence 2000,Diabetes Prevalence 2011,Diabetes Prevalence 2021,Diabetes Prevalence 2030,Diabetes Prevalence 2045,pop,iso_alpha
+0,Middle East and North Africa,Afghanistan,,7.6,10.9,11.0,11.3,31889923.0,AFG
+1,Europe,Albania,,2.8,10.2,10.2,10.9,3600523.0,ALB
+2,Middle East and North Africa,Algeria,,7.0,7.1,7.6,8.1,33333216.0,DZA
+3,Western Pacific,American Samoa,,,20.3,21.7,23.1,,ASM
+4,Europe,Andorra,,5.4,9.7,11.0,11.9,,AND
+5,Africa,Angola,,2.9,4.6,4.9,5.0,12420476.0,AGO
+6,North America and Caribbean,Anguilla,,2.9,,,,,AIA
+7,North America and Caribbean,Antigua and Barbuda,,12.5,11.7,13.2,14.1,,ATG
+8,South and Central America,Argentina,,5.5,5.4,6.1,6.4,40301927.0,ARG
+9,Europe,Armenia,,8.5,5.6,6.4,6.8,,ARM
+10,North America and Caribbean,Aruba,12.1,12.4,4.3,4.6,4.6,,ABW
+11,Western Pacific,Australia,0.0,6.6,6.4,7.4,8.0,20434176.0,AUS
+12,Europe,Austria,,6.6,4.6,5.3,5.8,8199783.0,AUT
+13,Europe,Azerbaijan,,2.8,5.6,6.4,6.8,,AZE
+14,North America and Caribbean,Bahamas,,12.1,8.8,10.0,10.6,,BHS
+15,Middle East and North Africa,Bahrain,14.8,19.5,11.3,11.9,12.6,708573.0,BHR
+16,South-East Asia,Bangladesh,,10.5,14.2,15.0,15.3,150448339.0,BGD
+17,North America and Caribbean,Barbados,13.2,12.4,14.0,16.1,17.3,,BRB
+18,Europe,Belarus,,8.0,5.6,6.4,6.8,,BLR
+19,Europe,Belgium,,4.8,3.6,4.1,4.4,10392226.0,BEL
+20,North America and Caribbean,Belize,,17.0,14.5,15.7,16.4,,BLZ
+21,Africa,Benin,,2.0,1.1,1.2,1.2,8078314.0,BEN
+22,North America and Caribbean,Bermuda,12.1,12.0,13.0,14.1,14.8,,BMU
+23,South-East Asia,Bhutan,,5.7,10.4,11.2,11.6,,BTN
+24,South and Central America,Bolivia (Plurinational State of),,6.6,5.5,6.1,6.4,9119152.0,BOL
+25,Europe,Bosnia and Herzegovina,,7.5,9.1,10.2,10.9,4552198.0,BIH
+26,Africa,Botswana,,10.8,5.2,5.9,6.3,1639131.0,BWA
+27,South and Central America,Brazil,,10.1,8.8,10.2,10.9,190010647.0,BRA
+28,North America and Caribbean,British Virgin Islands,12.1,8.6,8.7,14.1,14.8,,VGB
+29,Western Pacific,Brunei Darussalam,,9.4,11.1,11.8,12.0,,BRN
+30,Europe,Bulgaria,,6.7,7.4,8.3,8.7,7322858.0,BGR
+31,Africa,Burkina Faso,,3.0,2.1,2.2,2.3,14326203.0,BFA
+32,Africa,Burundi,,2.7,6.5,7.3,7.4,8390505.0,BDI
+33,Africa,Cabo Verde,,5.4,2.1,2.2,2.3,,CPV
+34,Western Pacific,Cambodia,,2.9,7.3,8.2,8.6,14131858.0,KHM
+35,Africa,Cameroon,0.0,6.1,5.5,5.9,6.0,17696293.0,CMR
+36,North America and Caribbean,Canada,,8.4,7.7,8.9,9.6,33390141.0,CAN
+37,North America and Caribbean,Cayman Islands,12.1,12.0,13.0,14.1,14.8,,CYM
+38,Africa,Central African Republic,,3.2,5.8,6.2,6.4,4369038.0,CAF
+39,Africa,Chad,,3.9,5.8,6.2,6.4,10238807.0,TCD
+40,Europe,Channel Islands,,4.9,6.3,7.0,7.5,,JEY
+41,South and Central America,Chile,,9.5,10.8,11.9,12.6,16284741.0,CHL
+42,Western Pacific,China,,8.8,10.6,11.8,12.5,1318683096.0,CHN
+43,Western Pacific,China Hong Kong SAR,12.1,7.6,7.8,9.4,10.4,6980412.0,HKG
+44,Western Pacific,China Macao SAR,,7.2,7.8,9.4,10.4,,MAC
+45,South and Central America,Colombia,,9.8,8.3,8.9,9.9,44227550.0,COL
+46,Africa,Comoros,,8.4,11.7,12.7,13.1,710960.0,COM
+47,Africa,Congo,,5.5,5.5,5.9,6.0,3800610.0,COG
+48,Western Pacific,Cook Islands,,8.6,,,,,COK
+49,South and Central America,Costa Rica,,9.6,8.8,10.1,10.8,4133884.0,CRI
+50,Europe,Croatia,,5.2,4.8,5.4,5.9,4493312.0,HRV
+51,South and Central America,Cuba,,9.4,7.6,7.8,8.0,11416987.0,CUB
+52,North America and Caribbean,Curaçao,,,11.7,13.2,14.1,,CUW
+53,Europe,Cyprus,,9.3,8.6,9.4,9.9,,CYP
+54,Europe,Czechia,11.7,5.3,7.1,8.0,8.6,10228744.0,CZE
+55,Africa,Côte d'Ivoire,,4.9,2.1,2.2,2.3,18013409.0,CIV
+56,Western Pacific,Democratic People's Republic of Korea,,8.4,8.6,9.4,9.9,23301725.0,KOR
+57,Africa,Democratic Republic of the Congo,,3.1,5.8,6.2,6.4,64606759.0,COD
+58,Europe,Denmark,,5.6,5.3,5.9,6.3,5468120.0,DNK
+59,Africa,Djibouti,,6.3,7.4,8.4,8.5,496374.0,DJI
+60,North America and Caribbean,Dominica,,8.9,11.7,13.2,14.1,,DMA
+61,South and Central America,Dominican Republic,,8.1,10.5,12.5,13.2,9319622.0,DOM
+62,South and Central America,Ecuador,,6.6,4.4,4.6,4.7,13755680.0,ECU
+63,Middle East and North Africa,Egypt,,16.6,20.9,22.6,23.5,80264543.0,EGY
+64,South and Central America,El Salvador,,9.4,6.3,6.9,7.2,6939688.0,SLV
+65,Africa,Equatorial Guinea,,4.2,5.5,5.9,6.0,551201.0,GNQ
+66,Africa,Eritrea,,3.6,6.5,7.3,7.4,4906585.0,ERI
+67,Europe,Estonia,,7.0,6.5,7.4,8.0,,EST
+68,Africa,Eswatini,,3.1,4.6,4.9,5.0,1133066.0,SWZ
+69,Africa,Ethiopia,,3.4,5.0,5.3,5.4,76511887.0,ETH
+70,Europe,Faroe Islands,,,3.8,4.3,4.7,,FRO
+71,Western Pacific,Fiji,,10.9,17.7,19.6,20.7,,FJI
+72,Europe,Finland,,5.8,6.1,7.1,7.7,5238460.0,FIN
+73,Europe,France,,5.4,5.3,6.0,6.5,61083916.0,FRA
+74,South and Central America,French Guiana,,9.6,,,,,GUF
+75,Western Pacific,French Polynesia,,8.6,25.2,26.9,28.2,,PYF
+76,Africa,Gabon,,10.3,5.5,5.9,6.0,1454867.0,GAB
+77,Africa,Gambia,,2.0,1.9,2.0,2.1,1688359.0,GMB
+78,Europe,Georgia,,2.8,5.7,6.3,6.6,,GEO
+79,Europe,Germany,,5.3,6.9,7.9,8.4,82400996.0,DEU
+80,Africa,Ghana,,5.0,2.6,3.1,3.3,22873338.0,GHA
+81,Europe,Greece,,5.1,6.4,7.5,8.2,10706290.0,GRC
+82,Europe,Greenland,,,3.3,3.8,4.1,,GRL
+83,North America and Caribbean,Grenada,12.1,8.6,12.6,14.2,15.2,,GRD
+84,North America and Caribbean,Guadeloupe,,6.3,,,,,GLP
+85,Western Pacific,Guam,,8.6,19.1,21.0,22.0,,GUM
+86,South and Central America,Guatemala,,9.3,13.1,14.1,14.7,12572928.0,GTM
+87,Africa,Guinea,,4.4,2.1,2.2,2.3,9947814.0,GIN
+88,Africa,Guinea-Bissau,,3.0,2.1,2.2,2.3,1472041.0,GNB
+89,North America and Caribbean,Guyana,,16.7,11.7,13.2,14.1,,GUY
+90,North America and Caribbean,Haiti,,6.6,8.9,9.1,9.1,8502814.0,HTI
+91,Europe,Holy See,,,7.3,8.1,8.7,,VAT
+92,South and Central America,Honduras,,6.7,5.1,5.6,5.8,7483763.0,HND
+93,Europe,Hungary,,6.0,7.0,8.0,8.5,9956108.0,HUN
+94,Europe,Iceland,,3.2,5.5,6.4,6.9,301931.0,ISL
+95,South-East Asia,India,,9.0,9.6,10.4,10.8,1110396331.0,IND
+96,Western Pacific,Indonesia,,5.1,10.6,11.3,11.7,223547000.0,IDN
+97,Middle East and North Africa,Iran (Islamic Republic of),,11.1,9.1,10.0,10.6,69453570.0,IRN
+98,Middle East and North Africa,Iraq,,9.1,10.7,11.6,12.2,27499638.0,IRQ
+99,Europe,Ireland,,5.2,3.0,3.6,3.9,4109086.0,IRL
+100,Europe,Isle of Man,,,6.3,7.0,7.5,,IMN
+101,Europe,Israel,,7.4,8.5,9.8,10.6,6426679.0,ISR
+102,Europe,Italy,,5.1,6.4,7.4,8.0,58147733.0,ITA
+103,North America and Caribbean,Jamaica,,15.7,11.1,12.6,13.3,2780132.0,JAM
+104,Western Pacific,Japan,,7.7,6.6,7.7,8.3,127467972.0,JPN
+105,Middle East and North Africa,Jordan,,12.1,15.4,17.1,18.0,6053193.0,JOR
+106,Europe,Kazakhstan,,7.7,6.6,7.3,7.7,,KAZ
+107,Africa,Kenya,,5.1,4.0,4.0,3.9,35610177.0,KEN
+108,Western Pacific,Kiribati,,25.3,22.1,23.5,24.1,,KIR
+109,Middle East and North Africa,Kuwait,,20.7,24.9,28.1,29.8,2505559.0,KWT
+110,Europe,Kyrgyzstan,,6.3,6.6,7.3,7.7,,KGZ
+111,Western Pacific,Lao People's Democratic Republic,,3.3,6.2,7.1,7.5,,LAO
+112,Europe,Latvia,,7.8,5.9,6.6,7.1,,LVA
+113,Middle East and North Africa,Lebanon,,19.6,8.0,9.2,10.0,3921278.0,LBN
+114,Africa,Lesotho,,3.4,4.6,4.9,5.0,2012649.0,LSO
+115,Africa,Liberia,,3.3,2.1,2.2,2.3,3193942.0,LBR
+116,Middle East and North Africa,Libya,,13.8,8.7,9.3,9.7,6036914.0,LBY
+117,Europe,Liechtenstein,,4.7,6.1,6.9,7.4,,LIE
+118,Europe,Lithuania,,7.8,5.8,6.7,7.4,,LTU
+119,Europe,Luxembourg,,4.5,5.9,6.6,7.3,,LUX
+120,Africa,Madagascar,,4.7,4.6,4.9,5.0,19167654.0,MDG
+121,Africa,Malawi,,5.6,7.3,7.4,7.4,13327079.0,MWI
+122,Western Pacific,Malaysia,,12.1,19.0,18.9,19.6,24821286.0,MYS
+123,South-East Asia,Maldives,,9.2,9.2,10.0,10.4,,MDV
+124,Africa,Mali,,1.9,2.1,2.2,2.3,12031795.0,MLI
+125,Europe,Malta,,6.6,8.0,8.7,9.4,,MLT
+126,Western Pacific,Marshall Islands,,21.8,23.0,24.8,26.0,,MSL
+127,North America and Caribbean,Martinique,,12.1,,,,,MTQ
+128,Africa,Mauritania,,4.3,2.1,2.2,2.3,3270065.0,MRT
+129,South-East Asia,Mauritius,15.0,14.8,22.6,25.2,26.6,1250882.0,MUS
+130,Africa,Mayotte,,,4.6,4.9,5.0,,MYT
+131,North America and Caribbean,Mexico,14.2,15.6,16.9,18.3,18.9,108700891.0,MEX
+132,Western Pacific,Micronesia (Federated States of),,15.7,15.6,16.9,17.4,,FSM
+133,Europe,Monaco,,5.6,6.2,7.3,7.9,,MCO
+134,Western Pacific,Mongolia,,7.1,6.9,7.0,7.0,2874127.0,MNG
+135,Europe,Montenegro,,7.7,9.1,10.2,10.9,684736.0,MNE
+136,Middle East and North Africa,Morocco,,6.8,9.1,9.8,10.2,33757175.0,MAR
+137,Africa,Mozambique,,3.1,3.3,3.4,3.4,19951656.0,MOZ
+138,Western Pacific,Myanmar,,7.1,7.1,7.7,8.0,47761980.0,MMR
+139,Africa,Namibia,,7.8,6.7,7.3,7.9,2055080.0,NAM
+140,Western Pacific,Nauru,,20.4,23.4,25.0,26.2,,NRU
+141,South-East Asia,Nepal,,3.6,8.7,9.2,9.4,28901790.0,NPL
+142,Europe,Netherlands,,5.3,4.5,5.3,5.8,16570613.0,NLD
+143,North America and Caribbean,Netherlands Antilles,,12.0,,,,,ANT
+144,Western Pacific,New Caledonia,,8.6,23.4,25.0,26.2,,NCL
+145,Western Pacific,New Zealand,,8.6,6.2,7.0,7.5,4115771.0,NZL
+146,South and Central America,Nicaragua,,11.0,9.3,10.2,10.6,5675356.0,NIC
+147,Africa,Niger,,4.2,5.2,5.1,5.0,12894865.0,NER
+148,Africa,Nigeria,,4.8,3.6,3.7,3.7,135031164.0,NGA
+149,Western Pacific,Niue,,9.8,,,,,NIU
+150,Western Pacific,Northern Mariana Islands,,,23.4,25.0,26.2,,MNP
+151,Europe,North Macedonia,,7.7,6.1,7.0,7.6,,MKD
+152,Europe,Norway,,4.7,3.6,4.1,4.4,4627926.0,NOR
+153,Middle East and North Africa,Oman,,10.5,13.8,15.0,15.4,3204897.0,OMN
+154,Middle East and North Africa,Pakistan,11.8,7.9,30.8,32.8,33.6,169270617.0,PAK
+155,Western Pacific,Palau,,11.1,17.0,18.2,19.1,,PLW
+156,South and Central America,Panama,,9.4,8.2,8.9,9.3,3242173.0,PAN
+157,Western Pacific,Papua New Guinea,15.5,7.6,16.7,16.7,16.8,,PNG
+158,South and Central America,Paraguay,,6.5,7.5,8.3,8.8,6667147.0,PRY
+159,South and Central America,Peru,,6.0,4.8,5.3,5.5,28674757.0,PER
+160,Western Pacific,Philippines,,9.7,7.1,7.8,8.2,91077287.0,PHL
+161,Europe,Poland,,9.0,6.8,7.8,8.5,38518241.0,POL
+162,Europe,Portugal,,9.6,9.1,10.3,11.0,10642836.0,PRT
+163,South and Central America,Puerto Rico,,13.0,13.3,15.0,15.9,3942491.0,PRI
+164,Middle East and North Africa,Qatar,,19.8,19.5,21.7,22.8,,QAT
+165,Africa,Réunion,,16.0,,,,798094.0,REU
+166,Western Pacific,Republic of Korea,,7.5,6.8,7.2,7.8,49044790.0,KOR
+167,Europe,Republic of Moldova,,2.7,5.6,6.4,6.8,,MDA
+168,Europe,Romania,,7.7,6.5,7.1,7.5,22276056.0,ROU
+169,Europe,Russian Federation,,9.7,5.6,6.4,6.8,,RUS
+170,Africa,Rwanda,,3.1,6.5,7.3,7.4,8860588.0,RWA
+171,North America and Caribbean,Saint Kitts and Nevis,12.1,8.5,16.1,18.2,19.8,,KNA
+172,North America and Caribbean,Saint Lucia,,8.4,11.7,13.2,14.1,,LCA
+173,North America and Caribbean,Saint Vincent and the Grenadines,,8.8,8.0,8.8,9.2,,VCT
+174,Western Pacific,Samoa,,7.7,9.2,10.4,10.9,,WSM
+175,Europe,San Marino,,5.5,7.4,8.2,8.9,,SMR
+176,Africa,Sao Tome and Principe,,5.5,5.5,5.9,6.0,199579.0,STP
+177,Middle East and North Africa,Saudi Arabia,,19.6,18.7,20.4,21.4,27601038.0,SAU
+178,Africa,Senegal,,3.2,3.1,3.5,3.7,12267493.0,SEN
+179,Europe,Serbia,,7.7,9.1,10.2,10.9,10150265.0,SRB
+180,Africa,Seychelles,,12.1,8.5,9.1,9.5,,SYC
+181,Africa,Sierra Leone,,3.2,2.1,2.2,2.3,6144562.0,SLE
+182,Western Pacific,Singapore,,9.5,11.6,13.3,14.3,4553009.0,SGP
+183,Europe,Slovakia,,5.7,5.8,6.9,7.7,5447502.0,SVK
+184,Europe,Slovenia,,7.5,5.8,6.8,7.3,2009245.0,SVN
+185,Western Pacific,Solomon Islands,,15.3,19.8,21.4,22.3,,SLB
+186,Africa,Somalia,,4.3,6.5,7.3,7.4,9118773.0,SOM
+187,Africa,South Africa,,7.0,10.8,12.2,13.0,43997828.0,ZAF
+188,Africa,South Sudan,,,6.5,7.3,7.4,,SSD
+189,Europe,Spain,,6.3,10.3,11.8,12.7,40448191.0,ESP
+190,South-East Asia,Sri Lanka,,7.5,11.3,12.1,12.6,20378239.0,LKA
+191,Middle East and North Africa,State of Palestine,,9.2,9.2,10.2,10.6,4018332.0,PSE
+192,Middle East and North Africa,Sudan,,8.6,18.9,20.1,20.7,42292929.0,SDN
+193,North America and Caribbean,Suriname,,8.9,12.7,14.0,14.6,,SUR
+194,Europe,Sweden,,4.2,5.0,5.6,6.0,9031088.0,SWE
+195,Europe,Switzerland,,5.9,4.6,5.1,5.4,7554661.0,CHE
+196,Middle East and North Africa,Syrian Arab Republic,,9.9,14.9,15.9,16.4,19314747.0,SYR
+197,Western Pacific,Taiwan,9.1,8.3,9.7,11.5,12.6,23174294.0,TWN
+198,Europe,Tajikistan,,6.3,6.6,7.3,7.7,,TJK
+199,Western Pacific,Thailand,,7.5,9.7,10.5,11.0,65068149.0,THA
+200,Western Pacific,Timor-Leste,,7.5,8.6,9.4,9.9,,TLS
+201,Africa,Togo,,3.3,2.1,2.2,2.3,5701579.0,TGO
+202,Western Pacific,Tokelau,,11.5,,,,,TKL
+203,Western Pacific,Tonga,11.5,12.7,15.0,16.1,16.6,,TON
+204,North America and Caribbean,Trinidad and Tobago,14.1,12.7,12.7,14.4,15.4,1056608.0,TTO
+205,Middle East and North Africa,Tunisia,,9.5,9.6,10.3,10.5,10276158.0,TUN
+206,Europe,Turkey,,7.9,14.5,16.2,17.0,71158647.0,TUR
+207,Europe,Turkmenistan,,2.7,6.7,7.1,7.6,,TKM
+208,Western Pacific,Tuvalu,,19.2,20.3,21.9,23.1,,TUV
+209,Africa,Uganda,,2.8,4.6,4.6,4.6,29170398.0,UGA
+210,Europe,Ukraine,,2.9,5.6,6.4,6.8,,UKR
+211,Middle East and North Africa,United Arab Emirates,,18.8,16.4,17.2,18.1,,ARE
+212,Europe,United Kingdom,,5.2,6.3,7.0,7.5,60776238.0,GBR
+213,Africa,United Republic of Tanzania,,2.8,12.3,12.6,12.6,38139640.0,TZA
+214,North America and Caribbean,United States of America,,9.4,10.7,12.1,12.9,301139947.0,USA
+215,South and Central America,Uruguay,,5.7,9.0,10.0,10.9,3447496.0,URY
+216,North America and Caribbean,US Virgin Islands,,12.1,12.4,13.7,14.4,,VIR
+217,Europe,Uzbekistan,,6.4,7.0,7.7,8.1,,UZB
+218,Western Pacific,Vanuatu,,16.1,15.6,16.9,17.4,,VUT
+219,South and Central America,Venezuela (Bolivarian Republic of),,10.2,9.6,11.9,12.7,26084662.0,VEN
+220,Western Pacific,Viet Nam,,3.2,6.1,6.7,7.1,85262356.0,VNM
+221,Middle East and North Africa,Yemen,,9.6,5.4,5.7,5.7,22211743.0,YEM
+222,Africa,Zambia,,4.8,11.9,13.2,14.0,11746035.0,ZMB
+223,Africa,Zimbabwe,,9.8,2.1,2.2,2.3,12311143.0,ZWE
