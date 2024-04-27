@@ -12,12 +12,11 @@ apptitle = 'LiveWell'
 
 st.set_page_config(page_title=apptitle, 
                    page_icon="⚕️",
-                   initial_sidebar_state='collapsed',
-                   layout='wide')
+                   initial_sidebar_state='collapsed')
 
-margins_css = "<style>.main > div {padding-left: 10rem;padding-right: 10rem;}</style>"
+#margins_css = "<style>.main > div {padding-left: 10rem;padding-right: 10rem;}</style>"
 
-st.markdown(margins_css, unsafe_allow_html=True)
+#st.markdown(margins_css, unsafe_allow_html=True)
 
 #ML model
 xgb_8feat_path = '/Users/amansdalal/Desktop/iLab/main/models/xgb_m2.joblib'
