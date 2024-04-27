@@ -4,7 +4,7 @@ import plotly.express as px
 
 def chart_ob_age():
 
-    data = pd.read_csv('/Users/amansdalal/Downloads/deaths-from-obesity-by-age.csv')
+    data = pd.read_csv('../chart_data/deaths-from-obesity-by-age.csv')
 
     selected_country = st.selectbox('Select Country', ['World'] + data['Country'].unique().tolist())
 
