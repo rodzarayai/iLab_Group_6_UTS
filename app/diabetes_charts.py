@@ -75,7 +75,8 @@ def make_diabetes_charts_altair():
         click
     ).properties(
         width=300,
-        height=300
+        height=200,
+        title = 'Prevalence by Region'
     )
 
     line = alt.Chart(region_pct).mark_line().encode(
@@ -87,7 +88,8 @@ def make_diabetes_charts_altair():
         click
     ).properties(
         width=300,
-        height=300
+        height=200,
+        title = 'Prevalence Over Time'
     )
 
 
@@ -97,6 +99,11 @@ def make_diabetes_charts_altair():
         grid=False
     ).configure_view(
         strokeWidth=0
+    ).configure_title(
+    fontSize=15,
+    #font='Courier',
+    anchor='start',
+    #color='gray'
     )
     return final_charts
 
@@ -257,8 +264,9 @@ def make_diabetes_charts_alt():
     ).transform_filter(
         click
     ).properties(
-        width=200,
-        height=150
+        width=300,
+        height=300,
+        title = 'Prevalence by Region'
     )
 
     bar = alt.Chart(region_pct.loc[region_pct['Year'] == 2021]).mark_bar().encode(
@@ -269,8 +277,9 @@ def make_diabetes_charts_alt():
     ).add_selection(
         click
     ).properties(
-        width=200,
-        height=150
+        width=300,
+        height=300,
+        title = 'Prevalence Over Time'
     )
 
     charts = bar | line

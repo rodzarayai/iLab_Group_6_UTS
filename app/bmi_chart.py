@@ -1,6 +1,15 @@
 import plotly.graph_objects as go
 import numpy as np
 
+
+
+#### HOW TO MAKE FIGURES IN STREAMLIT ####
+'''
+    st.write(make_bmi_chart(bmi))
+'''
+
+
+
 def make_bmi_chart(BMI):
     # define colours
     plot_bgcolor = "white"
@@ -33,6 +42,7 @@ def make_bmi_chart(BMI):
                 hole=0.5,
                 marker_colors=quadrant_colors,
                 text=quadrant_text,
+                insidetextorientation='tangential',
                 textinfo="text",
                 hoverinfo="skip"
             ),
