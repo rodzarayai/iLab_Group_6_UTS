@@ -4,7 +4,7 @@ import plotly.express as px
 
 def chart_ob_pre():
 
-    data = pd.read_csv("/Users/amansdalal/Downloads/share-of-adults-defined-as-obese.csv")
+    data = pd.read_csv("../chart_data/share-of-adults-defined-as-obese.csv")
 
     fig_base = px.choropleth(data,
                         locations="Code",
