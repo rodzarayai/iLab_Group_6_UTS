@@ -5,7 +5,7 @@ import datetime
 import os
 import xgboost as xgb
 import plotly.graph_objects as go
-from all_obesity_charts import chart_ob_pre, chart_ob_dea, chart_ob_age
+from all_obesity_charts import chart_all
 
 # -- Set page config
 apptitle = 'LiveWell'
@@ -476,9 +476,6 @@ def page_results(preds_val_xgb):
 
 def page_facts_obesity():
     st.markdown("<h1 style='text-align: center; color: #2A4258; font-family: American Typewriter, serif; font-weight: bold; font-size: 40px'>Facts about obesity that you should be aware of</h1>", unsafe_allow_html=True)
-    chart_ob_pre()
-    chart_ob_dea()
-    chart_ob_age()
 
     st.markdown("<h1 style='text-align: left; font-family: Times New Roman, serif; font-weight: bold; font-size: 25px'>Understanding Obesity</h1>", unsafe_allow_html=True)
     st.markdown("""<h2 style='text-align: justify; font-size: 20px; font-family: Times New Roman; font-weight: normal'><b>Definition:</b> Obesity is a medical condition characterised by an excessive amount of body fat, which poses a risk to health. The World Health Organization (WHO) identifies obesity as a leading preventable cause of death worldwide, impacting life expectancy negatively and increasing the incidence of health problems. (Source: WHO)</h2>""", unsafe_allow_html=True)
@@ -507,7 +504,7 @@ def page_facts_obesity():
         <li><b>Severe COVID-19 Symptoms:</b> Individuals with obesity are at a higher risk for developing more severe complications if they contract COVID-19, including increased likelihood of hospitalisation, ICU admission, and mechanical ventilation. (Sources: CDC, NIDDK)</li>
         <li><b>Other Health Concerns:</b> Obesity also increases the risk for dyslipidemia, kidney disease, and complications related to pregnancy, fertility, and sexual function, in addition to mental health issues like depression and anxiety and challenges with physical functioning. (Sources: Mayo Clinic, CDC, NIDDK)</li>
         </ul>""", unsafe_allow_html=True)
-
+    chart_all()
     st.markdown("<h1 style='text-align: left; font-family: Times New Roman, serif; font-weight: bold; font-size: 25px'>Managing and Preventing Obesity</h1>", unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: justify; font-size: 20px; font-family: Times New Roman; font-weight: normal'>Effective management and prevention of obesity are critical to reducing these health risks:</h2>", unsafe_allow_html=True)
     st.markdown("""<ul>
