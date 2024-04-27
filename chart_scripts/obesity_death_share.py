@@ -4,7 +4,7 @@ import plotly.express as px
 
 def chart_ob_dea():
 
-    data = pd.read_csv("/Users/amansdalal/Downloads/death-rate-vs-share-obesity.csv").dropna()
+    data = pd.read_csv("../chart_data/death-rate-vs-share-obesity.csv").dropna()
 
     fig = px.scatter(data,
                     x='Percentage',
