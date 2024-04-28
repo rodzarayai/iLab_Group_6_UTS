@@ -557,7 +557,8 @@ def page_facts_diabetes():
 
 
 def page_resource_obesity():
-    st.title('Resources and Support for Obesity')
+    #st.title('Resources and Support for Obesity')
+    st.markdown("<h1 style='font-size:35px;'>Resources and Support for Obesity</h1>", unsafe_allow_html=True)
     st.markdown("<h1 style='text-align: left; font-weight: bold; font-size: 25px'>Trusted Information Sources:</h1>", unsafe_allow_html=True)
     st.markdown("""
     <ul>
