@@ -257,19 +257,19 @@ div[class*="Slider"] > label > div[data-testid="stMarkdownContainer"] > p {
     drinker = st.radio('Do you consider yourself a heavy drinker? ',['Yes','No'])
     drinker_info = 'Definition for a heavy drinker is an adult man having more than 14 drinks per week and an adult woman having more than 7 drinks per week'
     #HTML box ⓘ
-    st.markdown(f'<span title="{drinker_info}">ℹ️</span>', unsafe_allow_html=True)
+    #st.markdown(f'<span title="{drinker_info}">ℹ️</span>', unsafe_allow_html=True)
     
     phys_act = st.radio('Have you done any physical activity in past 30 days - not including your job?',['Yes','No'])
     gen_health = st.selectbox('What would you say your health status is in general?',['Excellent','Very good','Good', 'Fair', 'Poor'])
     men_health = st.slider('How many days in the past 30 days did you feel metnally unwell?',  0, 30, 15)
     men_health_info = "Mental health includes stress, depression, and all problems connected with emotions etc."
     # HTML box
-    st.markdown(f'<span title="{men_health_info}"> ℹ️ </span>', unsafe_allow_html=True)
+    #st.markdown(f'<span title="{men_health_info}"> ℹ️ </span>', unsafe_allow_html=True)
 
     phys_health = st.slider('How many days in the past 30 days did you feel physically unwell?', 0, 30, 15)
     phys_health_info = "Physical health includes all types of physical injuries and illnesses."
     #HTML box
-    st.markdown(f'<span title="{phys_health_info}"> ℹ️ </span>', unsafe_allow_html=True)
+    #st.markdown(f'<span title="{phys_health_info}"> ℹ️ </span>', unsafe_allow_html=True)
     walk = st.radio('Do you have serious difficulty walking or climbing stairs?',['Yes','No'])
 
     st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
@@ -588,7 +588,8 @@ def page_resource_obesity():
 
     
 def page_resource_diabetes():
-    st.title('Resources and Support for Diabetes Type 2')
+    #st.title('Resources and Support for Diabetes Type 2')
+    st.markdown("<h1 style='font-size:35px;'>Resources and Support for Diabetes Type 2</h1>", unsafe_allow_html=True)
     st.markdown("<h1 style='text-align: left; font-weight: bold; font-size: 25px'>Trusted Information Sources:</h1>", unsafe_allow_html=True)
     st.markdown("""
     <ul style='text-align: justify; font-size: 20px; font-weight: normal'>
