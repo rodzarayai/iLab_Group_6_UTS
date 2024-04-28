@@ -12,7 +12,7 @@ import numpy as np
 
 def make_bmi_chart(BMI):
     # define colours
-    plot_bgcolor = "#DDF0F0"
+    plot_bgcolor = "rgba(0, 0, 0, 0)"
     quadrant_colors = [plot_bgcolor, "#f22626", "#f25926", "#f28c26", "#f2bf26", "#85e043", "#eff229"] 
     
     # Text for each quadrent
