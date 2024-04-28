@@ -178,7 +178,7 @@ def page_home():
     # Title
     left_co, cent_co, last_co = st.columns(3)
     with cent_co:
-        st.image('app_logo.png', width=400)
+        st.image('/mount/src/ilab_group_6_uts/app/app_logo.png', width=400)
 
 
     # Aligned headers
