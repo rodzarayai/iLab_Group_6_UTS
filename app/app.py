@@ -23,7 +23,7 @@ st.set_page_config(page_title=apptitle,
 #scaler_path = '../models/scaler_minmax.joblib'
 
 #ML model
-xgb_8feat_path = '/mount/src/ilab_group_6_uts/models/xgb_M2.joblib'
+xgb_8feat_path = '/mount/src/ilab_group_6_uts/models/xgb_m2.joblib'
 scaler_path = '/mount/src/ilab_group_6_uts/models/scaler_minmax.joblib'
 
 scaler_mm = load(scaler_path)
