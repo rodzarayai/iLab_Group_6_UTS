@@ -622,12 +622,12 @@ def main():
     
  
 
-    button_home = st.sidebar.button("🏠 Homepage - Questionaire")
-    button_obesity = st.sidebar.button("📊 Learn More about Obesity")
-    button_resource_obesity = st.sidebar.button("⬇️ Resources and Support tools for Obesity")
-    button_facts_diabetes = st.sidebar.button("📊 Learn More about Diabetes Type 2")
-    button_resource_diabetes = st.sidebar.button("⬇️ Resources and Support tools for Diabetes Type 2")
-    button_team = st.sidebar.button("⭐ Meet the Team") 
+    button_home = st.sidebar.button("⌂ Homepage - Questionaire")
+    button_obesity = st.sidebar.button("↯ Learn More about Obesity")
+    button_resource_obesity = st.sidebar.button("✎ Resources and Support tools for Obesity")
+    button_facts_diabetes = st.sidebar.button("↯ Learn More about Diabetes Type 2")
+    button_resource_diabetes = st.sidebar.button("✎ Resources and Support tools for Diabetes Type 2")
+    button_team = st.sidebar.button("♘ Meet the Team") 
 
 
     
@@ -659,11 +659,11 @@ def main():
         page_home()
     elif st.session_state.selected_page == 'Learn More about Obesity':
         page_facts_obesity()
-    elif st.session_state.selected_page == 'Resources and Support tools for Obesity':
+    elif st.session_state.selected_page == 'Resources for Obesity':
         page_resource_obesity()
     elif st.session_state.selected_page == 'Learn More about Diabetes Type 2':
         page_facts_diabetes()
-    elif st.session_state.selected_page == 'Resources and Support tools for Diabetes Type 2':
+    elif st.session_state.selected_page == 'Resources for Diabetes Type 2':
         page_resource_diabetes()
     elif st.session_state.selected_page == 'Meet the Team':
         page_team()
