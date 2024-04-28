@@ -6,7 +6,7 @@ import streamlit as st
 
 def make_diabetes_map():
     # Import databetes data file.
-    file_name = '/Users/amansdalal/Desktop/iLab/main/chart_data/diabetes_world_data.csv'
+    file_name = '/mount/src/ilab_group_6_uts/chart_data/diabetes_world_data.csv'
     country_pct = pd.read_csv(file_name)
 
     # Add global country map
@@ -40,7 +40,7 @@ def make_diabetes_map():
 def make_diabetes_charts_altair():
     
     # Import databetes data file.
-    file_name = '/Users/amansdalal/Desktop/iLab/main/chart_data/diabetes_regional_data.csv'
+    file_name = '/mount/src/ilab_group_6_uts/chart_data/diabetes_regional_data.csv'
     region_pct = pd.read_csv(file_name)
     
     click = alt.selection_multi(encodings=['color'])
