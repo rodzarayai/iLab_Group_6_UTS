@@ -6,6 +6,7 @@ import os
 import xgboost as xgb
 import plotly.graph_objects as go
 from all_obesity_charts import chart_all
+from all_diabetes_charts import chart_dia
 from bmi_chart import make_bmi_chart
 
 
@@ -521,7 +522,7 @@ def page_facts_diabetes():
         <li><b>Unintended Weight Changes:</b> Unexpected weight loss or gain can be a consequence of disrupted glucose metabolism.</li>
         <li><b>Areas of Darkened Skin:</b>Patches of darkened skin, particularly in the armpits and neck, may signal insulin resistance.</li>
         </ul>""", unsafe_allow_html=True)
-    
+    chart_dia()
     st.markdown("<h1 style='text-align: left;   font-weight: bold; font-size: 25px'>Managing Type 2 Diabetes</h1>", unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: justify; font-size: 20px;   font-weight: normal'>Effective management of Type 2 diabetes focuses on maintaining blood sugar levels within a normal range:</h2>", unsafe_allow_html=True)
     st.markdown("""<ul>
