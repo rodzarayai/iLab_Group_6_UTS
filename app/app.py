@@ -175,21 +175,11 @@ def generate_plans(diabetes_condition, bmi, age_group, physical_health):
 
           
 def page_home():
-
-    st.write('36105 iLab: Capstone Project - Autumn 2024 - UTS')
-
     # Title
-    # Centered title using markdown and HTML
-    # Centered titles
-    st.markdown(
-        """
-        <h1 style='text-align: center; color: #2A4258; font-family: American Typewriter, serif; font-weight: bold; font-size: 40px'>
-            HealthScope 📚
-        </h1>
-        <h2 style='text-align: center; color: #4A6572; font-family: American Typewriter, serif; font-size: 20px'>
-            SEE YOUR HEALTH CLEARLY
-        </h2>
-        """, unsafe_allow_html=True)
+    left_co, cent_co, last_co = st.columns(3)
+    with cent_co:
+        st.image('healthscope_transparent.png', width=400)
+
 
     # Aligned headers
     st.markdown("<h2 style='text-align: center; font-size: 20px'>Discover a healthier you by understanding your risk of obesity and Type 2 diabetes. Our <u>quick questionnaire</u> will unlock personalised insights into your health and lifestyle choices.</h2>", unsafe_allow_html=True)
