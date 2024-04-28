@@ -16,7 +16,21 @@ apptitle = 'HealthScope'
 st.set_page_config(page_title=apptitle, 
                    page_icon="⚕️",
                    initial_sidebar_state='collapsed')
+page_bg_img = f"""
+<style>
+[data-testid="stAppViewContainer"] > .main {{
+background-image: url("https://i.ibb.co/XDTDJfb/back.jpg");
+background-size: 100%;
+background-position: top left;
+background-repeat: no-repeat;
+background-attachment: local;
+background-attachment: fixed
+}}
 
+</style>
+"""
+
+st.markdown(page_bg_img, unsafe_allow_html=True)
 
 #ML model
 #xgb_8feat_path = '../models/xgb_m2.joblib'
