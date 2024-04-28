@@ -618,7 +618,7 @@ def page_resource_diabetes():
     
 def page_team():
     st.title("Know the team")
-    st.image('team_bg.jpeg', caption='Sunrise by the mountains')
+    st.image('/mount/src/ilab_group_6_uts/app/team_bg.jpeg', caption='Sunrise by the mountains')
 
 
     
