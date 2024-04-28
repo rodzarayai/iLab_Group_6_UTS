@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 def chart_ob_pre():
-    data = pd.read_csv("../chart_data/share-of-adults-defined-as-obese.csv")
+    data = pd.read_csv("/mount/src/ilab_group_6_uts/chart_data/share-of-adults-defined-as-obese.csv")
 
     fig = px.choropleth(data,
                         locations="Code",
@@ -24,7 +24,7 @@ def chart_ob_pre():
     return fig
 #ds
 def chart_ob_dea():
-    data = pd.read_csv("../chart_data/death-rate-vs-share-obesity.csv").dropna()
+    data = pd.read_csv("/mount/src/ilab_group_6_uts/chart_data/death-rate-vs-share-obesity.csv").dropna()
 
     fig = px.scatter(data,
                     x='Percentage',
@@ -43,7 +43,7 @@ def chart_ob_dea():
     return fig
 
 def chart_ob_age():
-    data = pd.read_csv('../chart_data/deaths-from-obesity-by-age.csv')
+    data = pd.read_csv('/mount/src/ilab_group_6_uts/chart_data/deaths-from-obesity-by-age.csv')
 
     selected_country = st.selectbox('Select Country', ['World'] + data['Country'].unique().tolist())
 
