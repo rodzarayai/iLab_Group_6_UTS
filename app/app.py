@@ -243,21 +243,7 @@ div[class*="Slider"] > label > div[data-testid="stMarkdownContainer"] > p {
 
     bmi = round((weight / (height_m ** 2)), 1) if height_m != 0 else st.warning("Height cannot be zero. Please enter a valid height value.")
 
-    # Calculate BMI
-    if st.button('Calculate BMI') :
-        if height != 0:
-            bmi = round((weight / (height_m ** 2)), 1)
-            # df of WHO nutritional status by weight
-            bmi_categories = {"Underweight": [0.0, 18.49], "Normal weight": [18.5, 24.9], "Pre-obesity": [25.0, 29.9], 
-                                "Obesity class II":[35.0, 39.9], "Obesity class III": [40.0, 100]}
-            bmi_df = pd.DataFrame(bmi_categories, index = ['Minimum Weight', 'Maximum Weight'])
-            st.write("Your BMI is: ", bmi)
-            st.write(bmi_df)
-        elif height == None or weight == None:
-            st.write('Please input height and weight')
-        elif height == 0:
-            st.write('Entered height cannot be 0. Please enter again')
-    
+   
 
     #smoke = st.selectbox('Have you smoked at least 100 cigarettes in your entire life?',['Yes','No'])
 
@@ -300,7 +286,7 @@ div[class*="Slider"] > label > div[data-testid="stMarkdownContainer"] > p {
      
     st.markdown("""
 <nav class="navbar fixed-bottom navbar-expand-lg navbar-dark" style="background-color: #379683;">
-  <a class="navbar-brand" target="_blank">LiveWell</a>
+  <a class="navbar-brand" target="_blank">HealthScope</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -353,8 +339,10 @@ div[class*="Slider"] > label > div[data-testid="stMarkdownContainer"] > p {
         age_category = 'Age 65 to 69'
     elif age >= 70 and age <= 74:
         age_category = 'Age 70 to 74'
+    elif age >= 75 and age <= 79:
+        age_category = 'Age 70 to 74'
     else:
-        age_category = 'Age 75 or older'
+        age_category = 'Age 80 or older'
 
     
     age_map = {'Age 18 - 24': 1, 'Age 25 to 29': 2, 'Age 30 to 34': 3, 'Age 35 to 39': 4, 
