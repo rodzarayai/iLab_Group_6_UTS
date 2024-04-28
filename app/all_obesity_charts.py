@@ -15,7 +15,9 @@ def chart_ob_pre():
                         color_continuous_scale=px.colors.sequential.Sunsetdark,
                         projection="natural earth")
 
-    fig.update_layout(geo=dict(showframe=False, showcoastlines=False, projection_type='equirectangular'),
+    fig.update_layout(geo=dict(showframe=False, showcoastlines=False, projection_type='equirectangular', bgcolor='rgba(0,0,0,0)'),
+                    plot_bgcolor='rgba(0, 0, 0, 0)',
+                    paper_bgcolor='rgba(0, 0, 0, 0)',
                     coloraxis_colorbar=dict(tickvals=list(range(0, 45, 10))),
                     updatemenus=[dict(type='buttons', showactive=False,
                                         buttons=[dict(label='Play', method='animate', args=[None, dict(frame=dict(duration=75, redraw=True), fromcurrent=True)]),
@@ -33,6 +35,8 @@ def chart_ob_dea():
                     title='Death rate from obesity vs. share of adults who are obese<br><sup>Premature deaths attributed to obesity per 100,000 individuals.</sup>',
                     animation_frame='Year')
     fig.update_layout(xaxis_title='Adult obesity',
+                    plot_bgcolor='rgba(0, 0, 0, 0)',
+                    paper_bgcolor='rgba(0, 0, 0, 0)',
                     yaxis_title='Death rate from obesity',
                     updatemenus=[dict(type='buttons',
                                         showactive=False,
@@ -55,6 +59,9 @@ def chart_ob_age():
                         title='Deaths from Obesity by Age in World from 1990 to 2019<br><sup>Total premature deaths due to obesity (high body-mass index) differentiated by age.</sup>',
                         labels={'value': 'Population', 'Year': 'Year', 'variable': 'Age Group'}
                         )
+        fig.update_layout(
+                        plot_bgcolor='rgba(0, 0, 0, 0)',
+                        paper_bgcolor='rgba(0, 0, 0, 0)')
     else:
         filtered_data = data[data['Country'] == selected_country]
         fig = px.area(filtered_data,
@@ -63,7 +70,9 @@ def chart_ob_age():
                     title='Deaths from Obesity by Age in World from 1990 to 2019<br><sup>Total premature deaths due to obesity (high body-mass index) differentiated by age.</sup>',
                     labels={'value': 'Population', 'Year': 'Year', 'variable': 'Age Group'}
                     )
-
+        fig.update_layout(
+                                plot_bgcolor='rgba(0, 0, 0, 0)',
+                                paper_bgcolor='rgba(0, 0, 0, 0)')
     return fig
 
 def chart_all():
