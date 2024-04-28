@@ -19,10 +19,10 @@ st.set_page_config(page_title=apptitle,
 page_bg_img = f"""
 <style>
 [data-testid="stAppViewContainer"] > .main {{
-background-image: url("https://i.ibb.co/XDTDJfb/back.jpg");
+background-image: url("https://i.ibb.co/yVrV6Qv/back1.jpg");
 background-size: 100%;
 background-position: top left;
-background-repeat: no-repeat;
+background-repeat: repeat;
 background-attachment: local;
 background-attachment: fixed
 }}
