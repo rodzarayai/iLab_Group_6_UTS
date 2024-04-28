@@ -11,7 +11,7 @@ from all_obesity_charts import chart_all
 
 
 # -- Set page config
-apptitle = 'LiveWell'
+apptitle = 'HealthScope'
 
 st.set_page_config(page_title=apptitle, 
                    page_icon="⚕️",
@@ -19,11 +19,18 @@ st.set_page_config(page_title=apptitle,
 
 
 #ML model
-xgb_8feat_path = '../models/xgb_m2.joblib'
-scaler_path = '../models/scaler_minmax.joblib'
+#xgb_8feat_path = '../models/xgb_m2.joblib'
+#scaler_path = '../models/scaler_minmax.joblib'
+
+#ML model
+xgb_8feat_path = '/mount/src/ilab_group_6_uts/models/xgb_M2.joblib'
+scaler_path = '/mount/src/ilab_group_6_uts/models/scaler_minmax.joblib'
 
 scaler_mm = load(scaler_path)
 xgb_model = load(xgb_8feat_path)
+
+#scaler_mm = load(scaler_path)
+#xgb_model = load(xgb_8feat_path)
 
 
 
