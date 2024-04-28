@@ -176,7 +176,7 @@ def generate_plans(diabetes_condition, bmi, age_group, physical_health):
           
 def page_home():
     # Title
-    left_co, cent_co, last_co = st.columns(3)
+    left_co, cent_co, last_co = st.columns(5)
     with cent_co:
         st.image('/mount/src/ilab_group_6_uts/app/app_logo.png', width=400)
 
