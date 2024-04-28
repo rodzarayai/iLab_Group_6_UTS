@@ -6,7 +6,7 @@ import os
 import xgboost as xgb
 import plotly.graph_objects as go
 from all_obesity_charts import chart_all
-
+from bmi_chart import make_bmi_chart
 
 
 
@@ -406,23 +406,10 @@ div[class*="Slider"] > label > div[data-testid="stMarkdownContainer"] > p {
         bmi_categories = {"Underweight": [0.0, 18.49], "Normal weight": [18.5, 24.9], "Pre-obesity": [25.0, 29.9], 
                           "Obesity class II":[35.0, 39.9], "Obesity class III": [40.0, 100]}
         bmi_df = pd.DataFrame(bmi_categories, index = ['min weight', 'max weight'])
-        st.write(f"Your BMI is: {bmi}")
+        #st.write(f"Your BMI is: {bmi}")
 
-
-        fig = go.Figure(go.Indicator(
-            domain = {'x': [0.1, 0.9], 'y': [0.1, 0.9]},
-            value = bmi,
-            mode = "gauge+number",
-            title = {'text': "BMI"},
-            gauge = {'axis': {'range': [None, 60]},
-                    'bar': {'color': "darkblue"},
-                    'steps' : [
-                        {'range': [0, 18.5], 'color': "royalblue"},
-                        {'range': [18.5, 25], 'color': "green"},
-                        {'range': [25, 30], 'color': "yellow"},
-                        {'range': [30, 40], 'color': "orange"},
-                        {'range': [40, 60], 'color': "red"}]}))
-        st.plotly_chart(fig, use_container_width=True)
+        st.write(make_bmi_chart(bmi))
+        
         page_results(preds_val_xgb) 
 
 
