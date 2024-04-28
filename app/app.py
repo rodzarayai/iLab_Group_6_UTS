@@ -618,7 +618,9 @@ def page_resource_diabetes():
     
 def page_team():
     st.title("Know the team")
-    st.write('Group 6 members')
+    st.image('team_bg.jpeg', caption='Sunrise by the mountains')
+
+
     
 def page_resources():
     st.title("Resources")
