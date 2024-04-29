@@ -397,7 +397,8 @@ div[class*="Slider"] > label > div[data-testid="stMarkdownContainer"] > p {
 
         if int(preds_val_xgb) == 0 and (bmi >= 18.5) and (bmi <= 355): #Normal
             result = "<span style='color:green; font-size: 40px'>YOU'RE DOING GREAT!</span>"
-            sub_text = f"<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>{Normal} You do not seem to be at risk for diabetes 🥗.</h2>"
+            sub_text = f"<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>{Normal}.</h2>"
+            sub_text = f"<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>You do not seem to be at risk for diabetes 🥗.</h2>"
         else:
             result = "<span style='color:red; font-size: 40px;'>YOUR HEALTH NEEDS ATTENTION!</span>"
             sub_text = "<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>You may be at risk of obesity and diabetes. You should visit a doctor.❗️</h2>"
