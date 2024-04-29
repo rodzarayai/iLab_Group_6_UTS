@@ -568,14 +568,14 @@ def page_facts_diabetes():
         <li><b>Areas of Darkened Skin:</b>Patches of darkened skin, particularly in the armpits and neck, may signal insulin resistance.</li>
         </ul>""", unsafe_allow_html=True)
     chart_dia()
-    st.markdown("<h1 style='text-align: left;   font-weight: bold; font-size: 25px'>Managing Type 2 Diabetes</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: left;   font-weight: bold; font-size: 25px'>Managing and preventing Type 2 Diabetes</h1>", unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: justify; font-size: 20px;   font-weight: normal'>Effective management of Type 2 diabetes focuses on maintaining blood sugar levels within a normal range:</h2>", unsafe_allow_html=True)
     st.markdown("""<ul>
-        <li><b>Monitoring Blood Sugar:</b> Regularly checking blood sugar levels is crucial for adjusting diet, activity, and medications to manage diabetes effectively.</li>
-        <li><b>Healthy Eating:</b> A diet rich in nutrients, low in fat and calories, and balanced in carbohydrates helps control blood sugar levels. Focusing on whole foods like fruits, vegetables, whole grains, and lean proteins is important.</li>
-        <li><b>Physical Activity:</b> Regular physical activity helps lower blood sugar levels, boost insulin sensitivity, and maintain a healthy weight. Aim for at least 150 minutes of moderate to vigorous exercise per week.</li>
-        <li><b>Medication and Insulin Therapy:</b> Many people with Type 2 diabetes require medication or insulin therapy to help manage their blood sugar levels. Adherence to prescribed treatments and close communication with healthcare providers are essential.</li>
-        <li><b>Regular Checkups:</b> Ongoing medical care, including regular checkups, is important to monitor the condition and adjust treatment as necessary. This includes managing not only blood sugar but also cholesterol levels and blood pressure.</li>
+        <li><b>Lifestyle Changes</b> The cornerstone of Type 2 diabetes prevention lies in adopting and maintaining healthy lifestyle choices. Key strategies include:</li>
+        <li><b>Maintaining a Healthy Weight:</b> Excess body fat, especially around the abdomen, increases the risk of developing Type 2 diabetes. Losing even a small amount of weight if you're overweight can significantly lower your risk.</li>
+        <li><b>Engaging in Physical Activity:</b> Regular physical activity helps control weight, lowers blood sugar levels, and increases insulin sensitivity. Aim for at least 150 minutes of moderate aerobic activity or 75 minutes of vigorous activity each week, alongside muscle-strengthening exercises on two or more days.</li>
+        <li><b>Eating a Well-Balanced Diet:</b> Focus on a diet rich in fruits, vegetables, whole grains, and lean proteins. Limit intake of refined sugars and saturated fats to help maintain optimal blood sugar levels and support a healthy weight.</li>
+        <li><b>Regular Checkups and Early Detection:</b> Ongoing medical care, including regular checkups, is important to monitor the condition and adjust treatment as necessary. This includes managing blood sugar, cholesterol levels, and blood pressure. Regular screening for Type 2 diabetes is crucial, especially for those at higher risk due to factors like family history, age, overweight, and leading a sedentary lifestyle. Early detection through screening can facilitate timely interventions, such as lifestyle adjustments or medication, to prevent or delay the disease's progression. Screening recommendations can vary, but generally, adults over the age of 45 or those with risk factors should consider getting screened every 3 years.</li>
         </ul>""", unsafe_allow_html=True)
     
     st.markdown("<h1 style='text-align: left;   font-weight: bold; font-size: 25px'>Preventing Type 2 Diabetes</h1>", unsafe_allow_html=True)
