@@ -38,11 +38,11 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 #scaler_path = '../models/scaler_minmax.joblib'
 
 #ML model
-xgb_8feat_path = '/mount/src/ilab_group_6_uts/models/xgb_m2.joblib'
-scaler_path = '/mount/src/ilab_group_6_uts/models/scaler_minmax.joblib'
+xgb_7feat_path = '/mount/src/ilab_group_6_uts/models/xgb_7features.joblib'
+scaler_path = '/mount/src/ilab_group_6_uts/models/scaler_minmax_7features.joblib'
 
 scaler_mm = load(scaler_path)
-xgb_model = load(xgb_8feat_path)
+xgb_model = load(xgb_7feat_path)
 
 #scaler_mm = load(scaler_path)
 #xgb_model = load(xgb_8feat_path)
@@ -255,19 +255,19 @@ div[class*="Slider"] > label > div[data-testid="stMarkdownContainer"] > p {
     st.header('Tell us about your health status')
     high_bp = st.radio('Do you have high blood pressure?',['Yes','No'])
     high_col = st.radio('Have you check your cholesterol level in the last 5 years?',['Yes','No'])
-    drinker = st.radio('Do you consider yourself a heavy drinker? ',['Yes','No'])
+    drinker = st.radio('Have you ever had a heart attack?',['Yes','No'])
     drinker_info = 'Definition for a heavy drinker is an adult man having more than 14 drinks per week and an adult woman having more than 7 drinks per week'
     #HTML box ⓘ
     #st.markdown(f'<span title="{drinker_info}">ℹ️</span>', unsafe_allow_html=True)
     
-    phys_act = st.radio('Have you done any physical activity in past 30 days - not including your job?',['Yes','No'])
+    #phys_act = st.radio('Have you done any physical activity in past 30 days - not including your job?',['Yes','No'])
     gen_health = st.selectbox('What would you say your health status is in general?',['Excellent','Very good','Good', 'Fair', 'Poor'])
-    men_health = st.slider('How many days in the past 30 days did you feel metnally unwell?',  0, 30, 15)
+    #men_health = st.slider('How many days in the past 30 days did you feel metnally unwell?',  0, 30, 15)
     men_health_info = "Mental health includes stress, depression, and all problems connected with emotions etc."
     # HTML box
     #st.markdown(f'<span title="{men_health_info}"> ℹ️ </span>', unsafe_allow_html=True)
 
-    phys_health = st.slider('How many days in the past 30 days did you feel physically unwell?', 0, 30, 15)
+    #phys_health = st.slider('How many days in the past 30 days did you feel physically unwell?', 0, 30, 15)
     phys_health_info = "Physical health includes all types of physical injuries and illnesses."
     #HTML box
     #st.markdown(f'<span title="{phys_health_info}"> ℹ️ </span>', unsafe_allow_html=True)
@@ -350,7 +350,7 @@ div[class*="Slider"] > label > div[data-testid="stMarkdownContainer"] > p {
     # Convert high_col to numeric form
     high_col_numeric = 1 if high_col == 'Yes' else 0
     # Convert phys_act to numeric form
-    phys_act_numeric = 1 if phys_act == 'Yes' else 0
+    #phys_act_numeric = 1 if phys_act == 'Yes' else 0
     # Convert high_col to numeric form
     drinker_numeric = 1 if drinker == 'Yes' else 0
 
@@ -365,34 +365,39 @@ div[class*="Slider"] > label > div[data-testid="stMarkdownContainer"] > p {
 
 
     input_mapping_xgb = {
-                        'BMI': bmi,
-                        'GenHlth': int(gen_health_numeric),
                         'HighBP': int(high_bp_numeric),
-                        'Age': int(age_numeric),
-                        'PhysHlth': int(phys_health),
-                        #'Income': int(income_numeric),
                         'HighChol': int(high_col_numeric),
-                        'MentHlth': int(men_health),
-                        #'Education': int(edu_numeric),
-                        'HvyAlcoholConsump': int(drinker_numeric),
+                        'GenHlth': int(gen_health_numeric),
                         'DiffWalk': int(walk_numeric),
-                        'PhysActivity': int(phys_act_numeric)
-            }
+                        'BMI': bmi,
+                        'Age': int(age_numeric),
+                        #'Education': int(edu_numeric),
+                        'HeartDiseaseorAttack': int(drinker_numeric) # name changed
+
+                        }
 
     input_df_xgb = pd.DataFrame([input_mapping_xgb])
     input_scaled = scaler_mm.transform(input_df_xgb)
     
     preds_val_xgb = xgb_model.predict(input_scaled)
-    workout_plan, diet_plan = generate_plans(preds_val_xgb, bmi, age, phys_health)
+    #workout_plan, diet_plan = generate_plans(preds_val_xgb, bmi, age, phys_health)
+
+    Underweight = "Your results suggest you are underweight. Consider consulting with a healthcare provider for advice on achieving a healthier weight."
+    Normal = "Your weight is in the normal range. Continue maintaining a balanced diet and regular physical activity to keep healthy."
+    Overweight_I = "You are slightly overweight. Small changes to your diet and increasing physical activity can make a big difference."
+    Overweight_II = "You fall into the Overweight II category. It's important to consider lifestyle changes and possibly seek professional guidance to reduce health risks."
+    Overweight_III = "Your results indicate a significantly higher weight. It's crucial to address this with medical advice to improve your health and reduce risk factors."
+
 
     if 'diabetes' not in st.session_state:
         st.session_state.diabetes = False
 
     if st.button('Calculate Results') or st.session_state.diabetes:
         st.session_state.diabetes = True
-        if int(preds_val_xgb) == 0:
+
+        if int(preds_val_xgb) == 0 and (bmi >= 18.5) and (bmi <= 355): #Normal
             result = "<span style='color:green; font-size: 40px'>YOU'RE DOING GREAT!</span>"
-            sub_text = "<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>You do not seem to have an obesity problem or to be at risk for diabetes 🥗.</h2>"
+            sub_text = f"<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>{Normal} You do not seem to be at risk for diabetes 🥗.</h2>"
         else:
             result = "<span style='color:red; font-size: 40px;'>YOUR HEALTH NEEDS ATTENTION!</span>"
             sub_text = "<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>You may be at risk of obesity and diabetes. You should visit a doctor.❗️</h2>"
