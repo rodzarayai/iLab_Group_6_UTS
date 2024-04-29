@@ -331,7 +331,7 @@ div[class*="Slider"] > label > div[data-testid="stMarkdownContainer"] > p {
     elif age >= 70 and age <= 74:
         age_category = 'Age 70 to 74'
     elif age >= 75 and age <= 79:
-        age_category = 'Age 70 to 74'
+        age_category = 'Age 75 to 79'
     else:
         age_category = 'Age 80 or older'
 
@@ -622,12 +622,12 @@ def main():
     
  
 
-    button_home = st.sidebar.button("⌂ Homepage - Questionaire")
-    button_obesity = st.sidebar.button("↯ Learn More about Obesity")
-    button_resource_obesity = st.sidebar.button("✎ Resources and Support tools for Obesity")
-    button_facts_diabetes = st.sidebar.button("↯ Learn More about Diabetes Type 2")
-    button_resource_diabetes = st.sidebar.button("✎ Resources and Support tools for Diabetes Type 2")
-    button_team = st.sidebar.button("♘ Meet the Team") 
+    button_home = st.sidebar.button("Homepage - Questionaire")
+    button_obesity = st.sidebar.button("Learn More about Obesity")
+    button_resource_obesity = st.sidebar.button("Resources and Support tools for Obesity")
+    button_facts_diabetes = st.sidebar.button("Learn More about Diabetes Type 2")
+    button_resource_diabetes = st.sidebar.button("Resources and Support tools for Diabetes Type 2")
+    button_team = st.sidebar.button("Meet the Team") 
 
 
     
@@ -642,13 +642,13 @@ def main():
         st.session_state.selected_page = 'Learn More about Obesity'
     
     if button_resource_obesity:
-        st.session_state.selected_page = 'Resources and Support tools for Obesity'
+        st.session_state.selected_page = 'Resources for Obesity'
 
     if button_facts_diabetes:
         st.session_state.selected_page = 'Learn More about Diabetes Type 2'
     
     if button_resource_diabetes:
-        st.session_state.selected_page = 'Resources and Support tools for Diabetes Type 2'
+        st.session_state.selected_page = 'Resources for Diabetes Type 2'
     
     if button_team:
         st.session_state.selected_page = 'Meet the Team'
