@@ -392,7 +392,7 @@ div[class*="Slider"] > label > div[data-testid="stMarkdownContainer"] > p {
     Diabetes_pred = "You may be at risk of diabetes."
 
     result_pos = "<span style='color:green; font-size: 40px;'>YOU'RE DOING GREAT!</span><br><br>"
-    result_med = "<span style='color:yellow; font-size: 40px;'>KEEP AN EYE ON YOUR HEALTH</span><br><br>"
+    result_med = "<span style='color:orange; font-size: 40px;'>KEEP AN EYE ON YOUR HEALTH</span><br><br>"
     result_neg = "<span style='color:red; font-size: 40px;'>YOUR HEALTH NEEDS ATTENTION!</span><br><br>"
 
 
