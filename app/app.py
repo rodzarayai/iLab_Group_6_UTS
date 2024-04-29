@@ -381,26 +381,66 @@ div[class*="Slider"] > label > div[data-testid="stMarkdownContainer"] > p {
     
     preds_val_xgb = xgb_model.predict(input_scaled)
     #workout_plan, diet_plan = generate_plans(preds_val_xgb, bmi, age, phys_health)
-
+   
     Underweight = "Your results suggest you are underweight. Consider consulting with a healthcare provider for advice on achieving a healthier weight."
     Normal = "Your weight is in the normal range. Continue maintaining a balanced diet and regular physical activity to keep healthy."
-    Overweight_I = "You are slightly overweight. Small changes to your diet and increasing physical activity can make a big difference."
-    Overweight_II = "You fall into the Overweight II category. It's important to consider lifestyle changes and possibly seek professional guidance to reduce health risks."
-    Overweight_III = "Your results indicate a significantly higher weight. It's crucial to address this with medical advice to improve your health and reduce risk factors."
-    No_Diabetes = "You do not seem to be at risk for diabetes 🥗."
+    Overweight = "You are slightly overweight. Small changes to your diet and increasing physical activity can make a big difference."
+    Obesity_I = "Your results suggest you are in Obesity Class I. Consider making lifestyle changes to improve your health, including dietary adjustments and increasing physical activity."
+    Obesity_II = "Your results indicate you are in Obesity Class II. It's important to consider lifestyle changes and possibly seek professional guidance to reduce health risks."
+    Overweight_III = "Your results suggest you are in Obesity Class III. It's crucial to address this with medical advice to improve your health and reduce risk factors."
+    No_Diabetes = "You do not seem to be at risk for diabetes."
+    Diabetes_pred = "You may be at risk of diabetes."
+
+    result_pos = "<span style='color:green; font-size: 40px;'>YOU'RE DOING GREAT!</span><br><br>"
+    result_med = "<span style='color:yellow; font-size: 40px;'>KEEP AN EYE ON YOUR HEALTH</span><br><br>"
+    result_neg = "<span style='color:red; font-size: 40px;'>YOUR HEALTH NEEDS ATTENTION!</span><br><br>"
+
+
 
     if 'diabetes' not in st.session_state:
         st.session_state.diabetes = False
 
     if st.button('Calculate Results') or st.session_state.diabetes:
         st.session_state.diabetes = True
-
-        if int(preds_val_xgb) == 0 and (bmi >= 18.5) and (bmi <= 355): #Normal
-            result = "<span style='color:green; font-size: 40px'>YOU'RE DOING GREAT!</span>"
+        #No diabetes and diff weiths
+        if int(preds_val_xgb) == 0 and (bmi >= 18.5) and (bmi <= 25): #Normal
+            result = result_pos
             sub_text = f"<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>{Normal}<br>{No_Diabetes}</h2>"
-        else:
-            result = "<span style='color:red; font-size: 40px;'>YOUR HEALTH NEEDS ATTENTION!</span>"
-            sub_text = "<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>You may be at risk of obesity and diabetes. You should visit a doctor.❗️</h2>"
+        elif int(preds_val_xgb) == 0 and (bmi < 18.5): #UW
+            result = result_med
+            sub_text = f"<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>{Underweight}<br>{No_Diabetes}</h2>"
+        elif int(preds_val_xgb) == 0 and (bmi > 25) and (bmi <= 30): #Ob
+            result = result_med
+            sub_text = f"<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>{Overweight}<br>{No_Diabetes}</h2>"
+        elif int(preds_val_xgb) == 0 and (bmi > 30 ) and (bmi <= 40): #UW
+            result = result_med
+            sub_text = f"<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>{Obesity_I}<br>{No_Diabetes}</h2>"
+        elif int(preds_val_xgb) == 0 and (bmi > 40) and (bmi <= 60): #UW
+            result = result_neg
+            sub_text = f"<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>{Obesity_II}<br>{No_Diabetes}</h2>"
+        elif int(preds_val_xgb) == 0 and (bmi > 60): #UW
+            result = result_neg
+            sub_text = f"<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>{Overweight_III}<br>{No_Diabetes}</h2>"
+
+        ############DIABETES
+        elif int(preds_val_xgb) == 1 and (bmi < 18.5): #UW
+            result = result_neg
+            sub_text = f"<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>{Underweight}<br>{Diabetes_pred}</h2>"
+        elif int(preds_val_xgb) == 1 and (bmi >= 18.5) and (bmi <= 25): #Normal
+            result = result_med
+            sub_text = f"<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>{Diabetes_pred}<br>{Normal}</h2>"
+        elif int(preds_val_xgb) == 1 and (bmi > 25) and (bmi <= 30): #Ob
+            result = result_neg
+            sub_text = f"<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>{Overweight}<br>{Diabetes_pred}</h2>"
+        elif int(preds_val_xgb) == 1 and (bmi > 30 ) and (bmi <= 40): #UW
+            result = result_neg
+            sub_text = f"<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>{Obesity_I}<br>{Diabetes_pred}</h2>"
+        elif int(preds_val_xgb) == 1 and (bmi > 40) and (bmi <= 60): #UW
+            result = result_neg
+            sub_text = f"<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>{Obesity_II}<br>{Diabetes_pred}</h2>"
+        elif int(preds_val_xgb) == 1 and (bmi > 60): #UW
+            result = result_neg
+            sub_text = f"<h2 style='color: #2A4258; text-align: justify; font-size: 20px;'>{Overweight_III}<br>{Diabetes_pred}</h2>"
 
 
         st.markdown("<span style='color: #2A4258; font-size: 20px;   font-weight: bold'> Your results from our model's predictions </span>", unsafe_allow_html=True)
