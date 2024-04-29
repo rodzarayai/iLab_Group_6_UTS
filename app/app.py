@@ -624,9 +624,9 @@ def main():
 
     button_home = st.sidebar.button("Homepage - Questionaire")
     button_obesity = st.sidebar.button("Learn More about Obesity")
-    button_resource_obesity = st.sidebar.button("Resources and Support tools for Obesity")
+    button_resource_obesity = st.sidebar.button("Resources for Obesity")
     button_facts_diabetes = st.sidebar.button("Learn More about Diabetes Type 2")
-    button_resource_diabetes = st.sidebar.button("Resources and Support tools for Diabetes Type 2")
+    button_resource_diabetes = st.sidebar.button("Resources for Diabetes Type 2")
     button_team = st.sidebar.button("Meet the Team") 
 
 
